@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HaloController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,5 +22,7 @@ Route::get('/', function () {
 Route::get('blog', function () {
     return view('blog');
 });
+
+Route::get('murid', [HaloController::class, 'index']);
 
 Route::get('belajar', [LoginController::class, 'index']);
