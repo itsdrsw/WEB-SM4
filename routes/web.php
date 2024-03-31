@@ -27,4 +27,6 @@ Route::get('murid', [HaloController::class, 'index']);
 
 Route::get('profil', [HaloController::class, 'profil']);
 
+Route::get('murid/{nama}', [HaloController::class, 'getNama']);
+
 Route::get('belajar', [LoginController::class, 'index']);

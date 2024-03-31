@@ -17,4 +17,8 @@ class HaloController extends Controller
         $matkul = ['Laravel', 'Pemrograman Web', 'Database'];
         return view('profilmurid', ['nama' => $nama, 'matkul' => $matkul]);
     }
+
+    public function getNama($nama) {
+        return $nama;
+    }
 }
