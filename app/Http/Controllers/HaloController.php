@@ -21,4 +21,14 @@ class HaloController extends Controller
     public function getNama($nama) {
         return $nama;
     }
+
+    public function pendaftaran() {
+        return view('pendaftaran');
+    }
+
+    public function proses(Request $minta) {
+        $nama = $minta->nama;
+        $alamat = $minta->alamat;
+        return 'Nama : ' .$nama. ', Alamat : ' .$alamat;
+    }
 }

@@ -29,4 +29,7 @@ Route::get('profil', [HaloController::class, 'profil']);
 
 Route::get('murid/{nama}', [HaloController::class, 'getNama']);
 
+Route::get('pendaftaran', [HaloController::class, 'pendaftaran']);
+Route::post('pendaftaran/proses', [HaloController::class, 'proses']);
+
 Route::get('belajar', [LoginController::class, 'index']);
