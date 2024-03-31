@@ -8,6 +8,7 @@ class HaloController extends Controller
 {
     //
     public function index() {
-        return view('murid');
+        $nama = 'Dimas Dharman';
+        return view('murid', ['nama' => $nama]);
     }
 }
