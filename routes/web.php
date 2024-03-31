@@ -25,4 +25,6 @@ Route::get('blog', function () {
 
 Route::get('murid', [HaloController::class, 'index']);
 
+Route::get('profil', [HaloController::class, 'profil']);
+
 Route::get('belajar', [LoginController::class, 'index']);
