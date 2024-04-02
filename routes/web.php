@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HaloController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
+use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,6 +37,11 @@ Route::post('pendaftaran/proses', [HaloController::class, 'proses']);
 
 Route::get('belajar', [LoginController::class, 'index']);
 
-Route::get('/', [BlogController::class, 'home']);
+// Route::get('/', [BlogController::class, 'home']);
 Route::get('tentang', [BlogController::class, 'tentang']);
 Route::get('kontak', [BlogController::class, 'kontak']);
+
+Route::get('/', [LoginController::class, 'login']);
+Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actionlogin');
+Route::post('home', [HomeController::class, 'index'])->name('home')->middleware('auth');
+Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('actionlogoout')->middleware('auth');
