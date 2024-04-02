@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HaloController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
@@ -15,9 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('blog', function () {
     return view('blog');
@@ -33,3 +34,7 @@ Route::get('pendaftaran', [HaloController::class, 'pendaftaran']);
 Route::post('pendaftaran/proses', [HaloController::class, 'proses']);
 
 Route::get('belajar', [LoginController::class, 'index']);
+
+Route::get('/', [BlogController::class, 'home']);
+Route::get('tentang', [BlogController::class, 'tentang']);
+Route::get('kontak', [BlogController::class, 'kontak']);
