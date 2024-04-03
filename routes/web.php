@@ -4,6 +4,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HaloController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Route;
 
@@ -41,7 +42,14 @@ Route::get('belajar', [LoginController::class, 'index']);
 Route::get('tentang', [BlogController::class, 'tentang']);
 Route::get('kontak', [BlogController::class, 'kontak']);
 
-Route::get('/', [LoginController::class, 'login']);
+//Route untuk login
+Route::get('/', [LoginController::class, 'login'])->name('login');
 Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actionlogin');
-Route::post('home', [HomeController::class, 'index'])->name('home')->middleware('auth');
-Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('actionlogoout')->middleware('auth');
+
+Route::get('home', [HomeController::class, 'index'])->name('home')->middleware('auth');
+Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('actionlogout')->middleware('auth');
+
+
+//Route untuk Register
+Route::get('register', [RegisterController::class, 'register'])->name('register');
+Route::post('register/action', [RegisterController::class, 'actionregister'])->name('actionregister');

@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
-    //
-    public function login() {
+    public function login()
+    {
         if (Auth::check()) {
             return redirect('home');
         }else{
@@ -24,11 +24,20 @@ class LoginController extends Controller
             'password' => $request->input('password'),
         ];
 
-        if (Auth::Attempt($data)) {
+        if (Auth::attempt($data)) {
+            // Autentikasi berhasil
             return redirect('home');
-        }else{
+        } else {
+            // Autentikasi gagal
             Session::flash('error', 'Email atau Password Salah');
             return redirect('/');
         }
+
+    }
+
+    public function actionlogout()
+    {
+        Auth::logout();
+        return redirect('/');
     }
 }
