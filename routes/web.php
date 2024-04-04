@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HaloController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
@@ -41,6 +42,9 @@ Route::get('belajar', [LoginController::class, 'index']);
 // Route::get('/', [BlogController::class, 'home']);
 Route::get('tentang', [BlogController::class, 'tentang']);
 Route::get('kontak', [BlogController::class, 'kontak']);
+
+//route administrator
+Route::get('admin/dashboard', [DashboardController::class, 'home']);
 
 //Route untuk login
 Route::get('/', [LoginController::class, 'login'])->name('login');
