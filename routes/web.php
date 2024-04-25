@@ -1,12 +1,10 @@
 <?php
 
-use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\HaloController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\RegisterController;
-use Illuminate\Auth\Events\Login;
+use App\Http\Controllers\PrestasiController;
+use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\ProkerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,41 +17,29 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-Route::get('blog', function () {
-    return view('blog');
+Route::fallback(function () {
+    return view('notfound', ['title' => 'PAGE NOT FOUND',]);
 });
 
-Route::get('murid', [HaloController::class, 'index']);
+//route login
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [LoginController::class, 'authenticate']);
+Route::get('/register', [LoginController::class, 'register']);
+Route::post('/register', [LoginController::class, 'process']);
+Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth');
 
-Route::get('profil', [HaloController::class, 'profil']);
+// route dashboard
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
+Route::get('/', [DashboardController::class, 'index'])->middleware('auth');
 
-Route::get('murid/{nama}', [HaloController::class, 'getNama']);
+//route profil
+Route::resource('/profil', ProfilController::class)->middleware('auth');
 
-Route::get('pendaftaran', [HaloController::class, 'pendaftaran']);
-Route::post('pendaftaran/proses', [HaloController::class, 'proses']);
+//route prestasi
+Route::resource('/prestasi', PrestasiController::class)->middleware('auth');
 
-Route::get('belajar', [LoginController::class, 'index']);
+//route prestasi
+Route::resource('/proker', ProkerController::class)->middleware('auth');
 
-// Route::get('/', [BlogController::class, 'home']);
-Route::get('tentang', [BlogController::class, 'tentang']);
-Route::get('kontak', [BlogController::class, 'kontak']);
-
-//route administrator
-Route::get('admin/dashboard', [DashboardController::class, 'home']);
-
-//Route untuk login
-Route::get('/', [LoginController::class, 'login'])->name('login');
-Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actionlogin');
-
-Route::get('home', [HomeController::class, 'index'])->name('home')->middleware('auth');
-Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('actionlogout')->middleware('auth');
-
-
-//Route untuk Register
-Route::get('register', [RegisterController::class, 'register'])->name('register');
-Route::post('register/action', [RegisterController::class, 'actionregister'])->name('actionregister');
+//route prestasi
+Route::resource('/proker', ProkerController::class)->middleware('auth');
