@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ $title }} | SIK-MAS</title>
+    <title>{{ $title }} | SIKMAS</title>
 
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -21,9 +21,9 @@
     @include('sweetalert::alert')
 
     <div class="register-box">
-        <div class="card card-outline card-primary">
+        <div class="card card-outline card-success">
             <div class="card-header text-center">
-                <a href="/" class="h1"><b>SIK-MAS</b> POLIJE</a>
+                <a href="/" class="h1"><b>SIKMAS</b> POLIJE</a>
             </div>
             <div class="card-body">
                 <p class="login-box-msg">Register a new user</p>
@@ -102,7 +102,7 @@
                         </div> --}}
 
                         <div class="col-6 justify-content-center">
-                            <button type="submit" class="btn btn-primary btn-block">Register</button>
+                            <button type="submit" class="btn btn-success btn-block">Register</button>
                         </div>
                     </div>
                     <div class="row d-flex justify-content-center">
