@@ -1,5 +1,5 @@
 @extends('template.main')
-@section('title', 'Progam Kerja')
+@section('title', 'LPJ')
 @section('content')
 
     <div class="content-wrapper">
@@ -42,10 +42,10 @@
                                         <tr>
                                             <th>No.</th>
                                             <th>Ormawa</th>
-                                            <th>Nama Progam Kerja</th>
-                                            <th>Uraian</th>
+                                            <th>Nama Proker</th>
                                             <th>Lampiran</th>
-                                            <th>Status Proker</th>
+                                            <th>Uraian</th>
+                                            <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>

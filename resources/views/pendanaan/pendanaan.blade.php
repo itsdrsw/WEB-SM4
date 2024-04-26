@@ -1,5 +1,5 @@
 @extends('template.main')
-@section('title', 'Progam Kerja')
+@section('title', 'Prestasi')
 @section('content')
 
     <div class="content-wrapper">
@@ -42,11 +42,11 @@
                                         <tr>
                                             <th>No.</th>
                                             <th>Ormawa</th>
-                                            <th>Nama Progam Kerja</th>
-                                            <th>Uraian</th>
-                                            <th>Lampiran</th>
-                                            <th>Status Proker</th>
-                                            <th>Aksi</th>
+                                            <th>Judul Kegiatan/Lomba</th>
+                                            <th>Sertifikat</th>
+                                            <th>Dokumentasi</th>
+                                            <th>Detail</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -62,10 +62,9 @@
                                                     <img src="" alt="">
                                                 </td>
                                                 <td>
-                                                    <span class="badge badge-info">
-                                                        <i class="fa-regular fa-circle-check"></i>
-                                                        Disetujui
-                                                    </span>
+                                                    <button type="submit" class="btn btn-info btn-sm mr-1">
+                                                        <i class="fa-solid fa-circle-info"></i> Lihat Detail
+                                                    </button>
                                                 </td>
                                                 {{-- <td>Rp. {{ number_format($data->price, 0) }}</td> --}}
                                                 {{-- <td>{{ $data->note }}</td> --}}

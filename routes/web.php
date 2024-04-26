@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LPJController;
+use App\Http\Controllers\PendanaanController;
 use App\Http\Controllers\PrestasiController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ProkerController;
@@ -38,8 +41,14 @@ Route::resource('/profil', ProfilController::class)->middleware('auth');
 //route prestasi
 Route::resource('/prestasi', PrestasiController::class)->middleware('auth');
 
-//route prestasi
+//route proker
 Route::resource('/proker', ProkerController::class)->middleware('auth');
 
-//route prestasi
-Route::resource('/proker', ProkerController::class)->middleware('auth');
+//route kegiatan
+Route::resource('/kegiatan', KegiatanController::class)->middleware('auth');
+
+//route pendanaan
+Route::resource('/pendanaan', PendanaanController::class)->middleware('auth');
+
+//route LPJ
+Route::resource('/lpj', LPJController::class)->middleware('auth');
