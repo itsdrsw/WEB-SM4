@@ -30,7 +30,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="text-right">
-                                    <a href="/barang/create" class="btn btn-primary"><i class="fa-solid fa-circle-plus"></i> Add
+                                    <a href="/register" class="btn btn-primary"><i class="fa-solid fa-circle-plus"></i> Add
                                         User</a>
                                 </div>
                             </div>
@@ -65,12 +65,12 @@
                                                 {{-- <td>Rp. {{ number_format($data->price, 0) }}</td> --}}
                                                 {{-- <td>{{ $data->note }}</td> --}}
                                                 <td>
-                                                    <form class="d-inline" action="/profil/{{ $data->id_user }}/edit" method="GET">
+                                                    <form class="d-inline" action="/profil/{{ $data->id }}/edit" method="GET">
                                                         <button type="submit" class="btn btn-success btn-sm mr-1">
                                                             <i class="fa-solid fa-square-pen"></i> Edit
                                                         </button>
                                                     </form>
-                                                    <form class="d-inline" action="/profil/{{ $data->id_user }}"
+                                                    <form class="d-inline" action="/profil/{{ $data->id }}"
                                                         method="POST">
                                                         @csrf
                                                         @method('delete')

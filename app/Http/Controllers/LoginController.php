@@ -68,7 +68,7 @@ class LoginController extends Controller
         $user = User::create($validated);
 
         Alert::success('Success', 'Register user has been successfully !');
-        return redirect('/login');
+        return redirect('/');
     }
 
     public function logout(Request $request)

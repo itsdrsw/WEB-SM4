@@ -31,7 +31,7 @@
                             <div class="card-header">
                                 <div class="text-right">
                                     <a href="/barang/create" class="btn btn-primary"><i class="fa-solid fa-circle-plus"></i>
-                                        </a>
+                                    </a>
                                 </div>
                             </div>
                             <!-- /.card-header -->
@@ -42,11 +42,11 @@
                                         <tr>
                                             <th>No.</th>
                                             <th>Ormawa</th>
-                                            <th>Judul Kegiatan/Lomba</th>
-                                            <th>Sertifikat</th>
-                                            <th>Dokumentasi</th>
-                                            <th>Detail</th>
-                                            <th>Action</th>
+                                            <th>Anggaran Tersedia</th>
+                                            <th>Anggaran Terpakai</th>
+                                            <th>Sisa Anggaran</th>
+                                            <th>Periode</th>
+                                            <th>Status Anggaran</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -62,27 +62,17 @@
                                                     <img src="" alt="">
                                                 </td>
                                                 <td>
-                                                    <button type="submit" class="btn btn-info btn-sm mr-1">
-                                                        <i class="fa-solid fa-circle-info"></i> Lihat Detail
-                                                    </button>
+                                                    <span class="badge badge-secondary">
+                                                        {{-- <i class="fa-regular fa-circle-check"></i> --}}
+                                                        Tahun 2024
+                                                    </span>
                                                 </td>
                                                 {{-- <td>Rp. {{ number_format($data->price, 0) }}</td> --}}
                                                 {{-- <td>{{ $data->note }}</td> --}}
                                                 <td>
-                                                    <form class="d-inline" action="/profil/{{ $data->id_user }}/edit"
-                                                        method="GET">
-                                                        <button type="submit" class="btn btn-success btn-sm mr-1">
-                                                            <i class="fa-solid fa-square-pen"></i> Edit
-                                                        </button>
-                                                    </form>
-                                                    <form class="d-inline" action="/profil/{{ $data->id_user }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('delete')
-                                                        <button type="submit" class="btn btn-danger btn-sm"
-                                                            id="btn-delete"><i class="fa-solid fa-trash-can"></i> Delete
-                                                        </button>
-                                                    </form>
+                                                    <button type="submit" class="btn btn-success btn-sm mr-1">
+                                                        <i class="fa-solid fa-circle-check"></i> Aktif
+                                                    </button>
                                                 </td>
                                             </tr>
                                         @endforeach

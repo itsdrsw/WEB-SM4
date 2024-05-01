@@ -13,7 +13,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="/">Home</a></li>
-                        <li class="breadcrumb-item"><a href="/barang">Profil</a></li>
+                        <li class="breadcrumb-item"><a href="/profil">Profil</a></li>
                         <li class="breadcrumb-item active">@yield('title')</li>
                     </ol>
                 </div><!-- /.col -->
@@ -31,20 +31,20 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="text-right">
-                                <a href="/barang" class="btn btn-warning btn-sm"><i class="fa-solid fa-arrow-rotate-left"></i>
+                                <a href="/profil" class="btn btn-warning btn-sm"><i class="fa-solid fa-arrow-rotate-left"></i>
                                     Back
                                 </a>
                             </div>
                         </div>
-                        <form class="needs-validation" novalidate action="/profil/{{ $user->id_user }}" method="POST">
+                        <form class="needs-validation" novalidate action="/profil/{{ $user->id }}" method="POST">
                             @csrf
                             @method('PUT')
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label for="name">Name</label>
-                                            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Name User" value="{{old('name', $user->name)}}" required>
+                                            <label for="name">KM/Instansi</label>
+                                            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Name User" value="{{old('name', $user->name)}}" disabled>
                                             @error('name')
                                             <span class="invalid-feedback text-danger">{{ $message }}</span>
                                             @enderror
@@ -52,8 +52,8 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label for="category">Ketua</label>
-                                            <input type="text" name="category" class="form-control @error('ketua') is-invalid @enderror" id="category" placeholder="Category" value="{{old('ketua', $user->ketua)}}" required>
+                                            <label for="category">Nama Lengkap</label>
+                                            <input type="text" name="category" class="form-control @error('ketua') is-invalid @enderror" id="ketua" placeholder="Masukkan Nama Lengkap" value="{{old('ketua', $user->ketua)}}" required>
                                             @error('ketua')
                                             <span class="invalid-feedback text-danger">{{ $message }}</span>
                                             @enderror
@@ -63,8 +63,8 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label for="supplier">Supplier</label>
-                                            <input type="text" name="supplier" class="form-control @error('email') is-invalid @enderror" id="supplier" placeholder="Supplier" value="{{old('email', $user->email)}}" required>
+                                            <label for="supplier">Email</label>
+                                            <input type="text" name="supplier" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="Masukkan Email" value="{{old('email', $user->email)}}" required>
                                             @error('email')
                                             <span class="invalid-feedback text-danger">{{ $message }}</span>
                                             @enderror

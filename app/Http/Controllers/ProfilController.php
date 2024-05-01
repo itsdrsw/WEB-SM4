@@ -65,7 +65,7 @@ class ProfilController extends Controller
         $user = user::findOrFail($id_user);
 
         return view('profil.profil-ubah', [
-            'profil' => $user,
+            'user' => $user,
         ]);
     }
 
@@ -75,7 +75,7 @@ class ProfilController extends Controller
     public function update(Request $request, $id_user)
     {
         $validated = $request->validate([
-            'name' => 'required|max:100|unique:users,name,' . $id_user . ',id_user',
+            'name' => 'required|max:100|unique:users,name,' . $id_user . ',id',
             'email' => 'required',
             'ketua' => 'required',
             // 'stock' => 'required',
@@ -96,15 +96,15 @@ class ProfilController extends Controller
     public function destroy($id_user)
     {
         try {
-            $deletedbarang = User::findOrFail($id_user);
+            $deleteduser = User::findOrFail($id_user);
 
-            $deletedbarang->delete();
+            $deleteduser->delete();
 
-            Alert::error('Success', 'Barang has been deleted !');
-            return redirect('/barang');
+            Alert::error('Success', 'User has been deleted !');
+            return redirect('/profil');
         } catch (Exception $ex) {
-            Alert::warning('Error', 'Cant deleted, Barang already used !');
-            return redirect('/barang');
+            Alert::warning('Error', 'Cant deleted, User already used !');
+            return redirect('/profil');
         }
     }
 }
