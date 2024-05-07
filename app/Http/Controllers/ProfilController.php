@@ -86,7 +86,7 @@ class ProfilController extends Controller
         $user = User::findOrFail($id_user);
         $user->update($validated);
 
-        Alert::info('Success', 'User has been updated !');
+        Alert::info('Success', 'Data user berhasil disimpan !');
         return redirect('/profil');
     }
 
@@ -100,10 +100,10 @@ class ProfilController extends Controller
 
             $deleteduser->delete();
 
-            Alert::error('Success', 'User has been deleted !');
+            Alert::error('Success', 'Data user berhasil dihapus !');
             return redirect('/profil');
         } catch (Exception $ex) {
-            Alert::warning('Error', 'Cant deleted, User already used !');
+            Alert::warning('Error', 'Data user gagal dihapus !');
             return redirect('/profil');
         }
     }

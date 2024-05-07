@@ -50,11 +50,11 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($user as $data)
+                                        @foreach ($prestasi as $dataprestasi)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td style="text-align: left;">{{ $data->name }}</td>
-                                                <td style="text-align: left;">{{ $data->email }}</td>
+                                                <td style="text-align: left;">{{ $dataprestasi->name}}</td>
+                                                <td style="text-align: left;">{{ $dataprestasi->namalomba }}</td>
                                                 <td>
                                                     <img src="" alt="">
                                                 </td>
@@ -69,13 +69,13 @@
                                                 {{-- <td>Rp. {{ number_format($data->price, 0) }}</td> --}}
                                                 {{-- <td>{{ $data->note }}</td> --}}
                                                 <td>
-                                                    <form class="d-inline" action="/profil/{{ $data->id_user }}/edit"
+                                                    <form class="d-inline" action="/prestasi/{{ $dataprestasi->idprestasi }}/edit"
                                                         method="GET">
                                                         <button type="submit" class="btn btn-success btn-sm mr-1">
                                                             <i class="fa-solid fa-square-pen"></i> Edit
                                                         </button>
                                                     </form>
-                                                    <form class="d-inline" action="/profil/{{ $data->id_user }}"
+                                                    <form class="d-inline" action="/profil/{{ $dataprestasi->id_user }}"
                                                         method="POST">
                                                         @csrf
                                                         @method('delete')
