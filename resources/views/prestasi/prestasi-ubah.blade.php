@@ -70,81 +70,18 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-12">
                                             <div class="form-group">
-                                                <label for="name">Nominasi</label>
-                                                <input type="text" name="name"
-                                                    class="form-control @error('name') is-invalid @enderror" id="name"
-                                                    placeholder="Name User" value="{{ old('name', $prestasi_ubah->juara) }}"
-                                                    readonly>
-                                                @error('name')
-                                                    <span class="invalid-feedback text-danger">{{ $message }}</span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label for="category">Nama Lomba</label>
-                                                <input type="text" name="namalomba"
-                                                    class="form-control @error('namalomba') is-invalid @enderror"
-                                                    id="namalomba" placeholder="Masukkan Nama Lengkap"
-                                                    value="{{ old('namalomba', $prestasi_ubah->namalomba) }}" readonly>
-                                                @error('ketua')
-                                                    <span class="invalid-feedback text-danger">{{ $message }}</span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label for="name">Penyelenggara</label>
-                                                <input type="text" name="name"
-                                                    class="form-control @error('name') is-invalid @enderror" id="name"
-                                                    placeholder="Name User"
-                                                    value="{{ old('tanggal_waktu', $prestasi_ubah->penyelenggara) }}"
-                                                    readonly>
-                                                @error('name')
-                                                    <span class="invalid-feedback text-danger">{{ $message }}</span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label for="name">Lingkup</label>
-                                                <input type="text" name="name"
-                                                    class="form-control @error('name') is-invalid @enderror" id="name"
-                                                    placeholder="Name User"
-                                                    value="{{ old('tanggal_waktu', $prestasi_ubah->lingkup) }}" readonly>
-                                                @error('name')
-                                                    <span class="invalid-feedback text-danger">{{ $message }}</span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label for="name">Tanggal Lomba</label>
-                                                <input type="text" name="name"
-                                                    class="form-control @error('name') is-invalid @enderror" id="name"
-                                                    placeholder="Name User"
-                                                    value="{{ old('tanggal_waktu', \Carbon\Carbon::parse($prestasi_ubah->tanggallomba)->format('j F Y')) }}"
-                                                    readonly>
-                                                @error('name')
-                                                    <span class="invalid-feedback text-danger">{{ $message }}</span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label for="name">Waktu Lomba</label>
-                                                <input type="text" name="name"
-                                                    class="form-control @error('name') is-invalid @enderror"
-                                                    id="name" placeholder="Name User"
-                                                    value="{{ old('tanggal_waktu', \Carbon\Carbon::parse($prestasi_ubah->tanggallomba)->format('h:i A')) }}"
-                                                    readonly>
-                                                @error('name')
+                                                <label for="status_prestasi">Status Prestasi</label>
+                                                <select class="custom-select" id="status_prestasi" name="status_prestasi">
+                                                    <option value="disetujui"
+                                                        {{ $prestasi_ubah->statusprestasi == 'disetujui' ? 'selected' : '' }}>
+                                                        Disetujui</option>
+                                                    <option value="ditolak"
+                                                        {{ $prestasi_ubah->statusprestasi == 'ditolak' ? 'selected' : '' }}>
+                                                        Ditolak</option>
+                                                </select>
+                                                @error('status_prestasi')
                                                     <span class="invalid-feedback text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>

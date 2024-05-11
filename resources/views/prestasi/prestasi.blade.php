@@ -65,16 +65,56 @@
                                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
-                                                                    <h5 class="modal-title" id="gambarModalLabel">Gambar
-                                                                        Sertifikat</h5>
+                                                                    <h5 class="modal-title" id="gambarModalLabel">Detail
+                                                                        Prestasi</h5>
                                                                     <button type="button" class="close"
                                                                         data-dismiss="modal" aria-label="Close">
                                                                         <span aria-hidden="true">&times;</span>
                                                                     </button>
                                                                 </div>
                                                                 <div class="modal-body">
-                                                                    <img src="{{ Storage::url($dataprestasi->sertifikat) }}"
-                                                                        class="img-fluid" alt="Sertifikat Prestasi">
+                                                                    <table class="table table-borderless table-striped-columns mt-3">
+                                                                        <tbody style="pointer-events: none;">
+                                                                            <tr>
+                                                                                <th scope="row" class="text-left">Nama Ormawa</th>
+                                                                                <td class="text-left">: {{ $dataprestasi->name }}</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <th scope="row" class="text-left">Kategori Lomba</th>
+                                                                                <td class="text-left">: {{ $dataprestasi->kategorilomba }}</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <th scope="row" class="text-left">Nama Lomba</th>
+                                                                                <td class="text-left">: {{ $dataprestasi->namalomba }}</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <th scope="row" class="text-left">Juara</th>
+                                                                                <td class="text-left">: {{ $dataprestasi->juara }}</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <th scope="row" class="text-left">Penyelenggara</th>
+                                                                                <td class="text-left">: {{ $dataprestasi->penyelenggara }}</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <th scope="row" class="text-left">Lingkup</th>
+                                                                                <td class="text-left">: {{ $dataprestasi->lingkup }}</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <th scope="row" class="text-left">Tanggal dan Waktu</th>
+                                                                                <td class="text-left">: {{ old('tanggal_waktu', \Carbon\Carbon::parse($dataprestasi->tanggallomba)->format('j F Y \| h:i A')) }}</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <th scope="row" class="text-left">Sertifikat</th>
+                                                                                <td colspan="2"><img src="{{ Storage::url($dataprestasi->sertifikat) }}"
+                                                                                    class="img-fluid mt-4" alt="Dokumentasi Prestasi"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <th scope="row" class="text-left">Dokumentasi</th>
+                                                                                <td colspan="2"><img src="{{ Storage::url($dataprestasi->dokumentasi) }}"
+                                                                                    class="img-fluid mt-4" alt="Dokumentasi Prestasi"></td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
                                                                 </div>
                                                             </div>
                                                         </div>

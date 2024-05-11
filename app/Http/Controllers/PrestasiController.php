@@ -43,6 +43,7 @@ class PrestasiController extends Controller
             // Validasi lainnya
             'sertifikat' => 'nullable|mimes:jpeg,png,jpg,pdf|max:2048',
             'dokumentasi' => 'nullable|mimes:jpeg,png,jpg,pdf|max:2048',
+            'status_prestasi' => 'required|in:disetujui,ditolak',
         ]);
 
         $prestasi = Prestasi::findOrFail($idprestasi);
@@ -79,6 +80,10 @@ class PrestasiController extends Controller
             $validated['dokumentasi'] = $dokumentasiPath;
         }
 
+        // Set nilai status prestasi dari input formulir
+        $validated['statusprestasi'] = $request->status_prestasi;
+
+        // Simpan perubahan dengan validasi yang sudah diatur sebelumnya
         $prestasi->update($validated);
 
         Alert::info('Success', 'Data Prestasi berhasil disimpan !');
