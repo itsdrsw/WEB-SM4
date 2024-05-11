@@ -1,5 +1,5 @@
 @extends('template.main')
-@section('title', 'Ubah Profil')
+@section('title', 'Ubah Prestasi')
 @section('content')
 
     <div class="content-wrapper">
@@ -13,7 +13,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="/">Home</a></li>
-                            <li class="breadcrumb-item"><a href="/profil">Profil</a></li>
+                            <li class="breadcrumb-item"><a href="/prestasi">Prestasi</a></li>
                             <li class="breadcrumb-item active">@yield('title')</li>
                         </ol>
                     </div><!-- /.col -->
@@ -38,7 +38,7 @@
                                 </div>
                             </div>
                             <form class="needs-validation" novalidate action="/prestasi/{{ $prestasi_ubah->idprestasi }}"
-                                method="POST">
+                                method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="card-body">
@@ -48,8 +48,8 @@
                                                 <label for="name">Nama Ormawa</label>
                                                 <input type="text" name="name"
                                                     class="form-control @error('name') is-invalid @enderror" id="name"
-                                                    placeholder="Name User"
-                                                    value="{{ old('name', $prestasi->first()->name) }}" readonly>
+                                                    placeholder="Name User" value="{{ old('name', $prestasi_ubah->name) }}"
+                                                    readonly>
                                                 @error('name')
                                                     <span class="invalid-feedback text-danger">{{ $message }}</span>
                                                 @enderror
@@ -115,8 +115,7 @@
                                                 <input type="text" name="name"
                                                     class="form-control @error('name') is-invalid @enderror" id="name"
                                                     placeholder="Name User"
-                                                    value="{{ old('tanggal_waktu', $prestasi_ubah->lingkup) }}"
-                                                    readonly>
+                                                    value="{{ old('tanggal_waktu', $prestasi_ubah->lingkup) }}" readonly>
                                                 @error('name')
                                                     <span class="invalid-feedback text-danger">{{ $message }}</span>
                                                 @enderror
@@ -146,6 +145,30 @@
                                                     value="{{ old('tanggal_waktu', \Carbon\Carbon::parse($prestasi_ubah->tanggallomba)->format('h:i A')) }}"
                                                     readonly>
                                                 @error('name')
+                                                    <span class="invalid-feedback text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label for="name">File Sertifikat</label>
+                                                <input type="file" name="sertifikat"
+                                                    class="form-control @error('sertifikat') is-invalid @enderror"
+                                                    id="sertifikat" placeholder="File">
+                                                @error('sertifikat')
+                                                    <span class="invalid-feedback text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label for="name">File Dokumentasi</label>
+                                                <input type="file" name="dokumentasi"
+                                                    class="form-control @error('dokumentasi') is-invalid @enderror"
+                                                    id="dokumentasi" placeholder="File">
+                                                @error('dokumentasi')
                                                     <span class="invalid-feedback text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>

@@ -23,6 +23,7 @@ return new class extends Migration
             $table->enum('lingkup', ['kabupaten', 'provinsi', 'nasional', 'lainnya']);
             $table->string('sertifikat')->nullable();
             $table->string('dokumentasi')->nullable();
+            $table->enum('statusprestasi', ['belum disetujui', 'disetujui', 'ditolak'])->default('belum disetujui');
             $table->timestamps();
         });
     }

@@ -14,4 +14,6 @@ class Prestasi extends Model
     protected $table = 'prestasi';
 
     protected $guarded = ['idprestasi'];
+
+    protected $fillable = ['sertifikat','dokumentasi'];
 }

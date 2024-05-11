@@ -31,7 +31,7 @@
                             <div class="card-header">
                                 <div class="text-right">
                                     <a href="/barang/create" class="btn btn-primary"><i class="fa-solid fa-circle-plus"></i>
-                                        </a>
+                                    </a>
                                 </div>
                             </div>
                             <!-- /.card-header -->
@@ -45,7 +45,7 @@
                                             <th>Judul Kegiatan/Lomba</th>
                                             <th>Sertifikat</th>
                                             <th>Dokumentasi</th>
-                                            <th>Detail</th>
+                                            <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -53,23 +53,80 @@
                                         @foreach ($prestasi as $dataprestasi)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td style="text-align: left;">{{ $dataprestasi->name}}</td>
+                                                <td style="text-align: left;">{{ $dataprestasi->name }}</td>
                                                 <td style="text-align: left;">{{ $dataprestasi->namalomba }}</td>
                                                 <td>
-                                                    <img src="" alt="">
+                                                    <button class="btn btn-info btn-sm lihat-gambar" data-toggle="modal"
+                                                        data-target="#gambarModal{{ $dataprestasi->idprestasi }}">Lihat</button>
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="gambarModal{{ $dataprestasi->idprestasi }}"
+                                                        tabindex="-1" role="dialog" aria-labelledby="gambarModalLabel"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="gambarModalLabel">Gambar
+                                                                        Sertifikat</h5>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <img src="{{ Storage::url($dataprestasi->sertifikat) }}"
+                                                                        class="img-fluid" alt="Sertifikat Prestasi">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </td>
                                                 <td>
-                                                    <img src="" alt="">
+                                                    <button class="btn btn-info btn-sm lihat-gambar" data-toggle="modal"
+                                                        data-target="#gambarModalDokumentasi{{ $dataprestasi->idprestasi }}">Lihat</button>
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="gambarModalDokumentasi{{ $dataprestasi->idprestasi }}"
+                                                        tabindex="-1" role="dialog" aria-labelledby="gambarModalLabel"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="gambarModalLabel">Gambar
+                                                                        Dokumentasi</h5>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <img src="{{ Storage::url($dataprestasi->dokumentasi) }}"
+                                                                        class="img-fluid" alt="Dokumentasi Prestasi">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </td>
                                                 <td>
-                                                    <button type="submit" class="btn btn-info btn-sm mr-1">
-                                                        <i class="fa-solid fa-circle-info"></i> Lihat Detail
-                                                    </button>
+                                                    <h5>
+                                                        <?php if ($dataprestasi->statusprestasi == 'belum disetujui'): ?>
+                                                        <span class="badge badge-warning">
+                                                            <i class="fa-solid fa-circle-info"></i> Belum Disetujui
+                                                        </span>
+                                                        <?php elseif ($dataprestasi->statusprestasi == 'disetujui'): ?>
+                                                        <span class="badge badge-success">
+                                                            <i class="fa-solid fa-circle-check"></i> Disetujui
+                                                        </span>
+                                                        <?php elseif ($dataprestasi->statusprestasi == 'ditolak'): ?>
+                                                        <span class="badge badge-danger">
+                                                            <i class="fa-solid fa-circle-xmark"></i> Ditolak
+                                                        </span>
+                                                        <?php endif; ?>
+                                                    </h5>
                                                 </td>
                                                 {{-- <td>Rp. {{ number_format($data->price, 0) }}</td> --}}
                                                 {{-- <td>{{ $data->note }}</td> --}}
                                                 <td>
-                                                    <form class="d-inline" action="/prestasi/{{ $dataprestasi->idprestasi }}/edit"
+                                                    <form class="d-inline"
+                                                        action="/prestasi/{{ $dataprestasi->idprestasi }}/edit"
                                                         method="GET">
                                                         <button type="submit" class="btn btn-success btn-sm mr-1">
                                                             <i class="fa-solid fa-square-pen"></i> Edit

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Prestasi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PrestasiController extends Controller
@@ -23,15 +24,12 @@ class PrestasiController extends Controller
      */
     public function edit($idprestasi)
     {
-        $prestasi = Prestasi::join('users', 'prestasi.user_id', '=', 'users.id')
+        $prestasi_ubah = Prestasi::join('users', 'prestasi.user_id', '=', 'users.id')
             ->select('prestasi.*', 'users.name')
-            ->orderBy('prestasi.namalomba', 'asc')
-            ->get();
-
-        $prestasi_ubah = Prestasi::findOrFail($idprestasi);
+            ->where('prestasi.idprestasi', $idprestasi)
+            ->firstOrFail();
 
         return view('prestasi.prestasi-ubah', [
-            'prestasi' => $prestasi,
             'prestasi_ubah' => $prestasi_ubah,
         ]);
     }
@@ -42,15 +40,45 @@ class PrestasiController extends Controller
     public function update(Request $request, $idprestasi)
     {
         $validated = $request->validate([
-            'name' => 'required|max:100|unique:users,name,' . $idprestasi . ',id',
-            'email' => 'required',
-            'ketua' => 'required',
-            // 'stock' => 'required',
-            // 'price' => 'required',
-            // 'note' => 'max:1000',
+            // Validasi lainnya
+            'sertifikat' => 'nullable|mimes:jpeg,png,jpg,pdf|max:2048',
+            'dokumentasi' => 'nullable|mimes:jpeg,png,jpg,pdf|max:2048',
         ]);
 
         $prestasi = Prestasi::findOrFail($idprestasi);
+
+        // Proses gambar sertifikat
+        if ($request->hasFile('sertifikat')) {
+            $file = $request->file('sertifikat');
+            $fileName = $file->getClientOriginalName(); // Menggunakan nama asli file
+
+            // Menyimpan file ke folder public/sertifikat
+            $sertifikatPath = $file->storeAs('sertifikat', $fileName, 'public');
+
+            // Hapus file lama jika ada
+            if ($prestasi->sertifikat) {
+                Storage::delete('public/' . $prestasi->sertifikat);
+            }
+
+            $validated['sertifikat'] = $sertifikatPath;
+        }
+
+        // Proses gambar dokumentasi
+        if ($request->hasFile('dokumentasi')) {
+            $file = $request->file('dokumentasi');
+            $fileName = $file->getClientOriginalName(); // Menggunakan nama asli file
+
+            // Menyimpan file ke folder public/sertifikat
+            $dokumentasiPath = $file->storeAs('dokumentasi', $fileName, 'public');
+
+            // Hapus file lama jika ada
+            if ($prestasi->dokumentasi) {
+                Storage::delete('public/' . $prestasi->dokumentasi);
+            }
+
+            $validated['dokumentasi'] = $dokumentasiPath;
+        }
+
         $prestasi->update($validated);
 
         Alert::info('Success', 'Data Prestasi berhasil disimpan !');

@@ -22,6 +22,7 @@ class PrestasiSeeder extends Seeder
                 'juara' => 'Juara 1',
                 'penyelenggara' => 'Pemerintah Kabupaten Sidoarjo',
                 'lingkup' => 'kabupaten',
+                'statusprestasi' => 'disetujui'
             ],
             [
                 'user_id' => 2,
