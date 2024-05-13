@@ -115,17 +115,18 @@
                                                 <img src="" alt="">
                                             </td>
                                             <td>
+
                                                 <h5>
-                                                    <?php if ($dataproker->status_proker == 'Terkirim'): ?>
+                                                    <?php if ($dataproker->status_proker == 'terkirim'): ?>
                                                     <span class="badge badge-warning">
                                                         <i class="fa-solid fa-circle-info"></i> Terkirim
                                                     </span>
-                                                    <?php elseif ($dataproker->status_proker == 'Disetujui'): ?>
+                                                    <?php elseif ($dataproker->status_proker == 'disetujui'): ?>
                                                     <span class="badge badge-success">
                                                         <i class="fa-regular fa-circle-check"></i>
                                                         Disetujui
                                                     </span>
-                                                    <?php elseif ($dataproker->status_proker == 'Ditolak'): ?>
+                                                    <?php elseif ($dataproker->status_proker == 'ditolak'): ?>
                                                     <span class="badge badge-danger">
                                                         <i class="fa-regular fa-circle-xmark"></i>
                                                         Ditolak
@@ -136,7 +137,7 @@
                                             {{-- <td>Rp. {{ number_format($data->price, 0) }}</td> --}}
                                             {{-- <td>{{ $data->note }}</td> --}}
                                             <td>
-                                                <form class="d-inline" action="/proker/{{ $dataproker->id_user }}/edit"
+                                                <form class="d-inline" action="/proker/{{ $dataproker->idproker }}/edit"
                                                     method="GET">
                                                     <button type="submit" class="btn btn-success btn-sm mr-1">
                                                         <i class="fa-solid fa-square-pen"></i> Edit

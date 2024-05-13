@@ -19,7 +19,7 @@ class ProkerSeeder extends Seeder
             'penanggung_jawab' => 'Eko Patrio',
             'uraian_proker' => 'Deskripsi Proker Pembuatan Buletin',
             'periode' => 2024,
-            'status_proker' => 'Terkirim',
+            'status_proker' => 'terkirim',
         ]);
 
         ProgamKerja::create([
@@ -28,7 +28,7 @@ class ProkerSeeder extends Seeder
             'penanggung_jawab' => 'Mega Astuti',
             'uraian_proker' => 'Deskripsi Proker Bakti Sosial',
             'periode' => 2024,
-            'status_proker' => 'Terkirim',
+            'status_proker' => 'terkirim',
         ]);
     }
 }

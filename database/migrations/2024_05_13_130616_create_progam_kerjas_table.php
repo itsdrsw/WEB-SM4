@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('uraian_proker', 150);
             $table->year('periode');
             $table->string('lampiran_proker')->nullable(); // Kolom file lampiran
-            $table->enum('status_proker', ['Terkirim', 'Dilihat', 'Disetujui', 'Ditolak'])->default('Terkirim');
+            $table->enum('status_proker', ['terkirim', 'dilihat', 'disetujui', 'ditolak'])->default('terkirim');
             $table->timestamps();
         });
     }

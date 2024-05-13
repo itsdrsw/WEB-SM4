@@ -14,4 +14,6 @@ class ProgamKerja extends Model
     protected $table = 'progam_kerja';
 
     protected $guarded = ['idproker'];
+
+    protected $fillable = ['status_proker','lampiran_proker'];
 }
