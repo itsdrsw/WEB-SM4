@@ -55,7 +55,7 @@
                                                 <td style="text-align: left;">{{ $dataprestasi->name }}</td>
                                                 <td style="text-align: left;">{{ $dataprestasi->namalomba }}</td>
                                                 <td>
-                                                    <button class="btn btn-info btn-sm lihat-gambar" data-toggle="modal"
+                                                    <button class="btn btn-outline-info btn-sm lihat-gambar" data-toggle="modal"
                                                         data-target="#gambarModal{{ $dataprestasi->idprestasi }}">
                                                         <i class="fa-solid fa-eye"></i> Lihat
                                                     </button>

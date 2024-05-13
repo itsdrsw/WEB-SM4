@@ -55,7 +55,7 @@
                                             <td style="text-align: left;">{{ $dataproker->name }}</td>
                                             <td style="text-align: left;">{{ $dataproker->nama_proker }}</td>
                                             <td>
-                                                <button class="btn btn-info btn-sm" data-toggle="modal"
+                                                <button class="btn btn-outline-info btn-sm" data-toggle="modal"
                                                     data-target="#gambarModal{{ $dataproker->idprestasi }}">
                                                     <i class="fa-solid fa-eye"></i> Lihat
                                                 </button>
@@ -112,10 +112,9 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <img src="" alt="">
+                                                <a href="{{ Storage::url($dataproker->lampiran_proker) }}" class="btn btn-outline-secondary btn-sm" target="_blank">Unduh File PDF</a>
                                             </td>
                                             <td>
-
                                                 <h5>
                                                     <?php if ($dataproker->status_proker == 'terkirim'): ?>
                                                     <span class="badge badge-warning">
