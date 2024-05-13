@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="/assets/dist/css/adminlte.min.css">
     {{-- icon --}}
     <link rel="icon" href="/assets/dist/img/BEMLogo.png" type="image/png">
-    </head>
+</head>
 
 <body class="hold-transition sidebar-mini">
 
@@ -132,7 +132,7 @@
                     </div>
                 </li> --}}
                 <!-- Notifications Dropdown Menu -->
-                {{-- <li class="nav-item dropdown">
+                <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
                         <i class="far fa-bell"></i>
                         <span class="badge badge-warning navbar-badge">15</span>
@@ -157,7 +157,7 @@
                         <div class="dropdown-divider"></div>
                         <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
                     </div>
-                </li> --}}
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                         <i class="fas fa-expand-arrows-alt"></i>
@@ -177,8 +177,8 @@
         <aside class="main-sidebar sidebar-light-success elevation-2">
             <!-- Brand Logo -->
             <a href="/dashboard" class="brand-link">
-                <img src="/assets/dist/img/BEMLogo.png" alt="AdminLTE Logo"
-                    class="brand-image img-circle elevation-1" style="opacity: .8">
+                <img src="/assets/dist/img/BEMLogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-1"
+                    style="opacity: .8">
                 <span class="custom-font"><b>SIKMAS</b> POLIJE</span>
             </a>
 
@@ -191,7 +191,6 @@
                     </div>
                     <div class="info custom-font">
                         <a href="#" class="d-block">{{ auth()->user()->ketua }}</a>
-                        {{-- <a href="#" class="full-text">{{ auth()->user()->ketua }}</a> --}}
                     </div>
                 </div>
 
@@ -210,10 +209,10 @@
 
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column custom-font" data-widget="treeview" role="menu"
-                        data-accordion="false">
+                    <ul class="nav nav-pills nav-sidebar flex-column custom-font" data-widget="treeview"
+                        role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+                            with font-awesome or any other icon font library -->
                         <li class="nav-item">
                             <a href="/" class="nav-link">
                                 <i class="nav-icon fa-solid fa-gauge-high"></i>
@@ -271,7 +270,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logging-out').submit();">
+                            <a href="#" class="nav-link"
+                                onclick="event.preventDefault(); document.getElementById('logging-out').submit();">
                                 <i class="nav-icon fa-solid fa-right-from-bracket"></i>
                                 <p>Keluar</p>
                             </a>
@@ -286,9 +286,9 @@
             </div>
             <!-- /.sidebar -->
         </aside>
-
-        @yield('content')
-
+        <div class="content-wrapper">
+            @yield('content')
+        </div>
         <!-- Content Wrapper. Contains page content -->
         {{-- content here --}}
         <!-- /.content-wrapper -->
@@ -303,7 +303,6 @@
         </aside>
         <!-- /.control-sidebar -->
 
-        <!-- Main Footer -->
         <footer class="main-footer">
             <!-- To the right -->
             <div class="float-right d-none d-sm-inline">
@@ -314,6 +313,8 @@
             reserved.
         </footer>
     </div>
+    <!-- Main Footer -->
+
     <!-- ./wrapper -->
 
     <!-- REQUIRED SCRIPTS -->

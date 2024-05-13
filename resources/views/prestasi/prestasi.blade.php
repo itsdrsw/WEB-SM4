@@ -2,7 +2,7 @@
 @section('title', 'Prestasi')
 @section('content')
 
-    <div class="content-wrapper">
+
         <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="container-fluid">
@@ -40,11 +40,10 @@
                                     style="width: 100%">
                                     <thead>
                                         <tr>
-                                            <th>No.</th>
+                                            <th style="width: 5%">No.</th>
                                             <th>Ormawa</th>
                                             <th>Judul Kegiatan/Lomba</th>
-                                            <th>Sertifikat</th>
-                                            <th>Dokumentasi</th>
+                                            <th>Detail</th>
                                             <th>Status</th>
                                             <th>Action</th>
                                         </tr>
@@ -57,7 +56,9 @@
                                                 <td style="text-align: left;">{{ $dataprestasi->namalomba }}</td>
                                                 <td>
                                                     <button class="btn btn-info btn-sm lihat-gambar" data-toggle="modal"
-                                                        data-target="#gambarModal{{ $dataprestasi->idprestasi }}">Lihat</button>
+                                                        data-target="#gambarModal{{ $dataprestasi->idprestasi }}">
+                                                        <i class="fa-solid fa-eye"></i> Lihat
+                                                    </button>
                                                     <!-- Modal -->
                                                     <div class="modal fade" id="gambarModal{{ $dataprestasi->idprestasi }}"
                                                         tabindex="-1" role="dialog" aria-labelledby="gambarModalLabel"
@@ -73,73 +74,70 @@
                                                                     </button>
                                                                 </div>
                                                                 <div class="modal-body">
-                                                                    <table class="table table-borderless table-striped-columns mt-3">
+                                                                    <table
+                                                                        class="table table-borderless table-striped-columns mt-3">
                                                                         <tbody style="pointer-events: none;">
                                                                             <tr>
-                                                                                <th scope="row" class="text-left">Nama Ormawa</th>
-                                                                                <td class="text-left">: {{ $dataprestasi->name }}</td>
+                                                                                <th scope="row" class="text-left">Nama
+                                                                                    Ormawa</th>
+                                                                                <td class="text-left">:
+                                                                                    {{ $dataprestasi->name }}</td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th scope="row" class="text-left">Kategori Lomba</th>
-                                                                                <td class="text-left">: {{ $dataprestasi->kategorilomba }}</td>
+                                                                                <th scope="row" class="text-left">
+                                                                                    Kategori Lomba</th>
+                                                                                <td class="text-left">:
+                                                                                    {{ $dataprestasi->kategorilomba }}</td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th scope="row" class="text-left">Nama Lomba</th>
-                                                                                <td class="text-left">: {{ $dataprestasi->namalomba }}</td>
+                                                                                <th scope="row" class="text-left">Nama
+                                                                                    Lomba</th>
+                                                                                <td class="text-left">:
+                                                                                    {{ $dataprestasi->namalomba }}</td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th scope="row" class="text-left">Juara</th>
-                                                                                <td class="text-left">: {{ $dataprestasi->juara }}</td>
+                                                                                <th scope="row" class="text-left">Juara
+                                                                                </th>
+                                                                                <td class="text-left">:
+                                                                                    {{ $dataprestasi->juara }}</td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th scope="row" class="text-left">Penyelenggara</th>
-                                                                                <td class="text-left">: {{ $dataprestasi->penyelenggara }}</td>
+                                                                                <th scope="row" class="text-left">
+                                                                                    Penyelenggara</th>
+                                                                                <td class="text-left">:
+                                                                                    {{ $dataprestasi->penyelenggara }}</td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th scope="row" class="text-left">Lingkup</th>
-                                                                                <td class="text-left">: {{ $dataprestasi->lingkup }}</td>
+                                                                                <th scope="row" class="text-left">Lingkup
+                                                                                </th>
+                                                                                <td class="text-left">:
+                                                                                    {{ $dataprestasi->lingkup }}</td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th scope="row" class="text-left">Tanggal dan Waktu</th>
-                                                                                <td class="text-left">: {{ old('tanggal_waktu', \Carbon\Carbon::parse($dataprestasi->tanggallomba)->format('j F Y \| h:i A')) }}</td>
+                                                                                <th scope="row" class="text-left">Tanggal
+                                                                                    dan Waktu</th>
+                                                                                <td class="text-left">:
+                                                                                    {{ old('tanggal_waktu', \Carbon\Carbon::parse($dataprestasi->tanggallomba)->format('j F Y \| h:i A')) }}
+                                                                                </td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th scope="row" class="text-left">Sertifikat</th>
-                                                                                <td colspan="2"><img src="{{ Storage::url($dataprestasi->sertifikat) }}"
-                                                                                    class="img-fluid mt-4" alt="Dokumentasi Prestasi"></td>
+                                                                                <th scope="row" class="text-left">
+                                                                                    Sertifikat</th>
+                                                                                <td colspan="2"><img
+                                                                                        src="{{ Storage::url($dataprestasi->sertifikat) }}"
+                                                                                        class="img-fluid mt-4"
+                                                                                        alt="Dokumentasi Prestasi"></td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th scope="row" class="text-left">Dokumentasi</th>
-                                                                                <td colspan="2"><img src="{{ Storage::url($dataprestasi->dokumentasi) }}"
-                                                                                    class="img-fluid mt-4" alt="Dokumentasi Prestasi"></td>
+                                                                                <th scope="row" class="text-left">
+                                                                                    Dokumentasi</th>
+                                                                                <td colspan="2"><img
+                                                                                        src="{{ Storage::url($dataprestasi->dokumentasi) }}"
+                                                                                        class="img-fluid mt-4"
+                                                                                        alt="Dokumentasi Prestasi"></td>
                                                                             </tr>
                                                                         </tbody>
                                                                     </table>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <button class="btn btn-info btn-sm lihat-gambar" data-toggle="modal"
-                                                        data-target="#gambarModalDokumentasi{{ $dataprestasi->idprestasi }}">Lihat</button>
-                                                    <!-- Modal -->
-                                                    <div class="modal fade" id="gambarModalDokumentasi{{ $dataprestasi->idprestasi }}"
-                                                        tabindex="-1" role="dialog" aria-labelledby="gambarModalLabel"
-                                                        aria-hidden="true">
-                                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="gambarModalLabel">Gambar
-                                                                        Dokumentasi</h5>
-                                                                    <button type="button" class="close"
-                                                                        data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <img src="{{ Storage::url($dataprestasi->dokumentasi) }}"
-                                                                        class="img-fluid" alt="Dokumentasi Prestasi">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -153,11 +151,13 @@
                                                         </span>
                                                         <?php elseif ($dataprestasi->statusprestasi == 'disetujui'): ?>
                                                         <span class="badge badge-success">
-                                                            <i class="fa-solid fa-circle-check"></i> Disetujui
+                                                            <i class="fa-regular fa-circle-check"></i>
+                                                            Disetujui
                                                         </span>
                                                         <?php elseif ($dataprestasi->statusprestasi == 'ditolak'): ?>
                                                         <span class="badge badge-danger">
-                                                            <i class="fa-solid fa-circle-xmark"></i> Ditolak
+                                                            <i class="fa-regular fa-circle-xmark"></i>
+                                                            Ditolak
                                                         </span>
                                                         <?php endif; ?>
                                                     </h5>
@@ -168,8 +168,8 @@
                                                     <form class="d-inline"
                                                         action="/prestasi/{{ $dataprestasi->idprestasi }}/edit"
                                                         method="GET">
-                                                        <button type="submit" class="btn btn-success btn-sm mr-1">
-                                                            <i class="fa-solid fa-square-pen"></i> Edit
+                                                        <button type="submit" class="btn btn-warning btn-sm mr-1">
+                                                            <i class="fa-solid fa-square-pen"></i> Konfirmasi
                                                         </button>
                                                     </form>
                                                     <form class="d-inline" action="/profil/{{ $dataprestasi->id_user }}"
@@ -194,6 +194,6 @@
                 <!-- /.content -->
             </div>
         </div>
-    </div>
+
 
 @endsection

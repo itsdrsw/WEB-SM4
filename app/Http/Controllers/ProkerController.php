@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\ProgamKerja;
 use Illuminate\Http\Request;
 
 class ProkerController extends Controller
 {
     public function index()
     {
-        $user = User::orderBy('name', 'asc')->get();
+        $proker = ProgamKerja::join('users', 'progam_kerja.user_id', '=', 'users.id')
+            ->select('progam_kerja.*', 'users.name')
+            ->orderBy('progam_kerja.nama_proker', 'asc')
+            ->get();
 
-        return view('proker.proker', [
-            'user' => $user
-        ]);
+        return view('proker.proker', compact('proker'));
+
     }
 }
