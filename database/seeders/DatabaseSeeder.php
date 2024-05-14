@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\Proker;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -26,6 +25,7 @@ class DatabaseSeeder extends Seeder
             PrestasiSeeder::class,
             ProkerSeeder::class,
             KegiatanSeeder::class,
+            PendanaanSeeder::class,
         ]);
     }
 }

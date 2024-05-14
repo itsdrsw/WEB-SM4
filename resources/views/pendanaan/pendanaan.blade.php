@@ -1,5 +1,5 @@
 @extends('template.main')
-@section('title', 'Prestasi')
+@section('title', 'Pendanaan')
 @section('content')
 
         <!-- Content Header (Page header) -->
@@ -49,28 +49,23 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($user as $data)
+                                        @foreach ($pendanaan as $datapendanaan)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td style="text-align: left;">{{ $data->name }}</td>
-                                                <td style="text-align: left;">{{ $data->email }}</td>
-                                                <td>
-                                                    <img src="" alt="">
-                                                </td>
-                                                <td>
-                                                    <img src="" alt="">
-                                                </td>
+                                                <td style="text-align: left;">{{ $datapendanaan->user_name }}</td>
+                                                <td style="text-align: left;">Rp. {{ number_format($datapendanaan->anggaran_tersedia, 0, ',', '.') }}</td>
+                                                <td style="text-align: left;">Rp. {{ number_format($datapendanaan->dana_terpakai, 0, ',', '.') }}</td>
+                                                <td style="text-align: left;">Rp. {{ number_format($datapendanaan->sisa_anggaran, 0, ',', '.') }}</td>
                                                 <td>
                                                     <span class="badge badge-secondary">
-                                                        {{-- <i class="fa-regular fa-circle-check"></i> --}}
-                                                        Tahun 2024
+                                                        Tahun {{ $datapendanaan->periode }}
                                                     </span>
                                                 </td>
                                                 {{-- <td>Rp. {{ number_format($data->price, 0) }}</td> --}}
                                                 {{-- <td>{{ $data->note }}</td> --}}
                                                 <td>
                                                     <button type="submit" class="btn btn-success btn-sm mr-1">
-                                                        <i class="fa-solid fa-circle-check"></i> Aktif
+                                                        <i class="fa-solid fa-circle-check"></i> {{ $datapendanaan->status_anggaran }}
                                                     </button>
                                                 </td>
                                             </tr>
