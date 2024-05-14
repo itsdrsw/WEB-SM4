@@ -1,5 +1,5 @@
 @extends('template.main')
-@section('title', 'Prestasi')
+@section('title', 'Kegiatan')
 @section('content')
 
         <!-- Content Header (Page header) -->
@@ -42,37 +42,102 @@
                                             <th>No.</th>
                                             <th>Ormawa</th>
                                             <th>Nama Kegiatan</th>
-                                            <th>Lampiran</th>
+                                            <th>Proposal</th>
                                             <th>Uraian</th>
                                             <th>Periode</th>
                                             <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($user as $data)
+                                        @foreach ($kegiatan as $datakegiatan)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td style="text-align: left;">{{ $data->name }}</td>
-                                                <td style="text-align: left;">{{ $data->email }}</td>
+                                                <td style="text-align: left;">{{ $datakegiatan->user_name }}</td>
+                                                <td style="text-align: left;">{{ $datakegiatan->nama_kegiatan }}</td>
                                                 <td>
-                                                    <img src="" alt="">
+                                                    <a href="{{ Storage::url($datakegiatan->proposal_kegiatan) }}" class="btn btn-outline-secondary btn-sm" target="_blank">Unduh File PDF</a>
                                                 </td>
                                                 <td>
-                                                    <img src="" alt="">
+                                                    <button class="btn btn-outline-info btn-sm" data-toggle="modal"
+                                                    data-target="#gambarModal{{ $datakegiatan->idkegiatan }}">
+                                                    <i class="fa-solid fa-eye"></i> Lihat
+                                                </button>
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="gambarModal{{ $datakegiatan->idkegiatan }}"
+                                                    tabindex="-1" role="dialog" aria-labelledby="gambarModalLabel"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="gambarModalLabel">Detail
+                                                                    Kegiatan</h5>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <table
+                                                                    class="table table-borderless table-striped-columns mt-3">
+                                                                    <tbody style="pointer-events: none;">
+                                                                        <tr>
+                                                                            <th scope="row" class="text-left">Nama Ormawa</th>
+                                                                            <td class="text-left">:
+                                                                                {{ $datakegiatan->user_name }}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row" class="text-left">Nama Progam Kerja</th>
+                                                                            <td class="text-left">:
+                                                                                {{ $datakegiatan->nama_proker }}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row" class="text-left">Nama Kegiatan</th>
+                                                                            <td class="text-left">:
+                                                                                {{ $datakegiatan->nama_kegiatan }}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row" class="text-left">Penanggungjawab</th>
+                                                                            <td class="text-left">:
+                                                                                {{ $datakegiatan->penanggung_jawab }}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row" class="text-left">
+                                                                                Periode</th>
+                                                                            <td class="text-left">:
+                                                                                {{ $datakegiatan->periode }}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row" class="text-left">Pengajuan
+                                                                            Dana </th>
+                                                                            <td class="text-left">:
+                                                                                Rp. {{ number_format($datakegiatan->pengajuan_dana, 0, ',', '.') }}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row" class="text-left">Dana
+                                                                            Disetujui </th>
+                                                                            <td class="text-left">:
+                                                                                Rp. {{ number_format($datakegiatan->dana_cair, 0, ',', '.') }}</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 </td>
                                                 <td>
-                                                    <span class="badge badge-info">2024</span>
+                                                    <span class="badge badge-primary">{{ $datakegiatan->periode }}</span>
                                                 </td>
                                                 {{-- <td>Rp. {{ number_format($data->price, 0) }}</td> --}}
                                                 {{-- <td>{{ $data->note }}</td> --}}
                                                 <td>
-                                                    <form class="d-inline" action="/profil/{{ $data->id_user }}/edit"
+                                                    <form class="d-inline" action="/kegiatan/{{ $datakegiatan->id_user }}/edit"
                                                         method="GET">
                                                         <button type="submit" class="btn btn-success btn-sm mr-1">
                                                             <i class="fa-solid fa-square-pen"></i> Edit
                                                         </button>
                                                     </form>
-                                                    <form class="d-inline" action="/profil/{{ $data->id_user }}"
+                                                    <form class="d-inline" action="/kegiatan/{{ $datakegiatan->id_user }}"
                                                         method="POST">
                                                         @csrf
                                                         @method('delete')

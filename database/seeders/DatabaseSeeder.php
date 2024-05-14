@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             PrestasiSeeder::class,
             ProkerSeeder::class,
+            KegiatanSeeder::class,
         ]);
     }
 }
