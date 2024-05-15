@@ -146,7 +146,7 @@
                                                 <td>
                                                     <h5>
                                                         <?php if ($dataprestasi->statusprestasi == 'belum disetujui'): ?>
-                                                        <span class="badge badge-warning">
+                                                        <span class="badge badge-light">
                                                             <i class="fa-solid fa-circle-info"></i> Belum Disetujui
                                                         </span>
                                                         <?php elseif ($dataprestasi->statusprestasi == 'disetujui'): ?>

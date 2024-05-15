@@ -56,11 +56,11 @@
                                             <td style="text-align: left;">{{ $dataproker->nama_proker }}</td>
                                             <td>
                                                 <button class="btn btn-outline-info btn-sm" data-toggle="modal"
-                                                    data-target="#gambarModal{{ $dataproker->idprestasi }}">
+                                                    data-target="#gambarModal{{ $dataproker->idproker }}">
                                                     <i class="fa-solid fa-eye"></i> Lihat
                                                 </button>
                                                 <!-- Modal -->
-                                                <div class="modal fade" id="gambarModal{{ $dataproker->idprestasi }}"
+                                                <div class="modal fade" id="gambarModal{{ $dataproker->idproker }}"
                                                     tabindex="-1" role="dialog" aria-labelledby="gambarModalLabel"
                                                     aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -117,7 +117,7 @@
                                             <td>
                                                 <h5>
                                                     <?php if ($dataproker->status_proker == 'terkirim'): ?>
-                                                    <span class="badge badge-warning">
+                                                    <span class="badge badge-light">
                                                         <i class="fa-solid fa-circle-info"></i> Terkirim
                                                     </span>
                                                     <?php elseif ($dataproker->status_proker == 'disetujui'): ?>

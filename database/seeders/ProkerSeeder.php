@@ -30,5 +30,14 @@ class ProkerSeeder extends Seeder
             'periode' => 2024,
             'status_proker' => 'terkirim',
         ]);
+
+        ProgamKerja::create([
+            'user_id' => 2,
+            'nama_proker' => 'Bela Negara',
+            'penanggung_jawab' => 'Yoman Dewata',
+            'uraian_proker' => 'Deskripsi Proker Bela Negara',
+            'periode' => 2024,
+            'status_proker' => 'terkirim',
+        ]);
     }
 }
