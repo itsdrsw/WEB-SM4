@@ -12,33 +12,19 @@ class PendanaanController extends Controller
     //
     public function index()
     {
-        $pendanaan = DB::table('pendanaan')
-        ->join('users', 'pendanaan.user_id', '=', 'users.id')
-        ->join('kegiatan', 'pendanaan.kegiatan_id', '=', 'kegiatan.idkegiatan')
-        ->select(
-            'pendanaan.idpendanaan',
-            'pendanaan.user_id',
-            'pendanaan.kegiatan_id',
-            'pendanaan.anggaran_tersedia',
-            'pendanaan.periode',
-            'pendanaan.status_anggaran',
-            'users.name as user_name',
-            'kegiatan.nama_kegiatan',
-            DB::raw('SUM(kegiatan.dana_cair) as dana_terpakai'),
-            DB::raw('pendanaan.anggaran_tersedia - SUM(kegiatan.dana_cair) as sisa_anggaran') // Hitung sisa anggaran
-        )
-        ->groupBy(
-            'pendanaan.idpendanaan',
-            'pendanaan.user_id',
-            'pendanaan.kegiatan_id',
-            'pendanaan.anggaran_tersedia',
-            'pendanaan.periode',
-            'pendanaan.status_anggaran',
-            'users.name',
-            'kegiatan.nama_kegiatan'
-        )
-        ->orderBy('pendanaan.idpendanaan', 'asc')
-        ->get();
+        $pendanaan = DB::table('users as u')
+            ->join('kegiatan as k', 'u.id', '=', 'k.user_id')
+            ->join('pendanaan as p', 'p.user_id', '=', 'u.id')
+            ->select(
+                'u.name',
+                'p.periode', 'p.status_anggaran',
+                DB::raw('GROUP_CONCAT(k.nama_kegiatan SEPARATOR ", ") as daftar_kegiatan'),
+                'p.anggaran_tersedia',
+                DB::raw('SUM(k.dana_cair) as total_dana'),
+                DB::raw('(p.anggaran_tersedia - SUM(k.dana_cair)) as sisa_anggaran')
+            )
+            ->groupBy('u.id',  'u.name', 'p.periode', 'p.status_anggaran', 'p.anggaran_tersedia')
+            ->get();
 
         return view('pendanaan.pendanaan', compact('pendanaan'));
     }

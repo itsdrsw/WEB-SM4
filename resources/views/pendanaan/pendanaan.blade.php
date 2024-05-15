@@ -52,9 +52,9 @@
                                         @foreach ($pendanaan as $datapendanaan)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td style="text-align: left;">{{ $datapendanaan->user_name }}</td>
+                                                <td style="text-align: left;">{{ $datapendanaan->name }}</td>
                                                 <td style="text-align: left;">Rp. {{ number_format($datapendanaan->anggaran_tersedia, 0, ',', '.') }}</td>
-                                                <td style="text-align: left;">Rp. {{ number_format($datapendanaan->dana_terpakai, 0, ',', '.') }}</td>
+                                                <td style="text-align: left;">Rp. {{ number_format($datapendanaan->total_dana, 0, ',', '.') }}</td>
                                                 <td style="text-align: left;">Rp. {{ number_format($datapendanaan->sisa_anggaran, 0, ',', '.') }}</td>
                                                 <td>
                                                     <span class="badge badge-secondary">

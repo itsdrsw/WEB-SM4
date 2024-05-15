@@ -32,6 +32,15 @@ class KegiatanSeeder extends Seeder
                 'periode' => 2024,
                 'status_kegiatan' => 'revisi',
             ],
+            [
+                'user_id' => 2,
+                'proker_id' => 2,
+                'nama_kegiatan' => 'Kegiatan Jumat Berkah',
+                'penanggung_jawab' => 'Mega Astuti',
+                'pengajuan_dana' => 2000000,
+                'periode' => 2024,
+                'status_kegiatan' => 'revisi',
+            ],
             // Tambahkan data contoh lainnya sesuai kebutuhan
         ];
         // Masukkan data ke dalam tabel Prestasi
