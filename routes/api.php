@@ -4,6 +4,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\LoginMobileController;
 use App\Http\Controllers\MobileLoginController;
 use App\Http\Controllers\MobilePrestasiController;
+use App\Http\Controllers\MobileProkerController;
 use App\Http\Controllers\PrestasiMobileController;
 use App\Http\Controllers\ProkerMobileController;
 use Illuminate\Http\Request;
@@ -39,3 +40,7 @@ Route::middleware('auth:sanctum')->post('validate-old-password', [MobileLoginCon
 Route::post('prestasi', [MobilePrestasiController::class, 'store']);
 Route::get('prestasi', [MobilePrestasiController::class, 'index']);
 Route::post('prestasi/{idprestasi}', [MobilePrestasiController::class, 'updatePrestasi']);
+
+Route::get('proker', [MobileProkerController::class, 'index']);
+Route::post('proker', [MobileProkerController::class, 'store']);
+Route::post('proker/{id}', [MobileProkerController::class, 'updateLampiranProker']);
