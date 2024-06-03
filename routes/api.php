@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\LoginMobileController;
+use App\Http\Controllers\MobileLoginController;
 use App\Http\Controllers\PrestasiMobileController;
 use App\Http\Controllers\ProkerMobileController;
 use Illuminate\Http\Request;
@@ -18,4 +19,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('/register', [MobileLoginController::class, 'register']);
+
+Route::post('/login', [MobileLoginController::class, 'loginApi']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('user-data', [MobileLoginController::class, 'getUserData']);
+});
+
+Route::post('change-password', [MobileLoginController::class, 'changePassword']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('update-user', [MobileLoginController::class, 'update']);
+});
+
+Route::middleware('auth:sanctum')->post('validate-old-password', [MobileLoginController::class, 'validateOldPassword']);
 
