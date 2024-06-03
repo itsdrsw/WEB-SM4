@@ -14,5 +14,4 @@ class LPJ extends Model
     protected $table = 'lpj';
 
     protected $guarded = ['idlpj'];
-
 }

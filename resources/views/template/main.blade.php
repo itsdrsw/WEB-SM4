@@ -190,7 +190,7 @@
                         <img src="/assets/dist/img/logodoni.png" class="img-circle elevation-1" alt="User Image">
                     </div>
                     <div class="info custom-font">
-                        <a href="#" class="d-block">{{ auth()->user()->ketua }}</a>
+                        <a href="#" class="d-block">{{ auth()->user()->role }}</a>
                     </div>
                 </div>
 

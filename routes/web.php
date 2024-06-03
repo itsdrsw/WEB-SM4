@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BemController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\LoginController;
@@ -8,6 +9,9 @@ use App\Http\Controllers\PendanaanController;
 use App\Http\Controllers\PrestasiController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ProkerController;
+use App\Models\Kegiatan;
+use App\Models\Pendanaan;
+use App\Models\ProgamKerja;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,24 +35,28 @@ Route::get('/register', [LoginController::class, 'register']);
 Route::post('/register', [LoginController::class, 'process']);
 Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth');
 
-// route dashboard
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
-Route::get('/', [DashboardController::class, 'index'])->middleware('auth');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'duel']);
+Route::get('/', [DashboardController::class, 'index'])->middleware(['auth', 'duel']);
 
 //route profil
-Route::resource('/profil', ProfilController::class)->middleware('auth');
+Route::resource('/profil', ProfilController::class)->middleware(['auth', 'solo']);
 
 //route prestasi
-Route::resource('/prestasi', PrestasiController::class)->middleware('auth');
+Route::resource('/prestasi', PrestasiController::class)->middleware(['auth', 'solo']);
 
 //route proker
-Route::resource('/proker', ProkerController::class)->middleware('auth');
+Route::resource('/proker', ProkerController::class)->middleware(['auth', 'solo']);
 
 //route kegiatan
-Route::resource('/kegiatan', KegiatanController::class)->middleware('auth');
+Route::resource('/kegiatan', KegiatanController::class)->middleware(['auth', 'duel']);
 
 //route pendanaan
-Route::resource('/pendanaan', PendanaanController::class)->middleware('auth');
+Route::resource('/pendanaan', PendanaanController::class)->middleware(['auth', 'solo']);
 
 //route LPJ
-Route::resource('/lpj', LPJController::class)->middleware('auth');
+Route::resource('/lpj', LPJController::class)->middleware(['auth', 'solo']);
+
+// blokir akses
+Route::get('/blank/blokir-akses', [DashboardController::class, 'BlokirAksesView'])->name('blank.blokirAksesView');
+Route::get('/blank/blokir-akses-bem', [DashboardController::class, 'BlokirAksesBem'])->name('blank.blokirAksesBem');
+

@@ -15,7 +15,7 @@ class PrestasiSeeder extends Seeder
     {
         $prestasi = [
             [
-                'user_id' => 1,
+                'user_id' => 3,
                 'namalomba' => 'Lomba Pidato',
                 'kategorilomba' => 'individu',
                 'tanggallomba' => '2024-05-01 09:00:00',
@@ -25,7 +25,7 @@ class PrestasiSeeder extends Seeder
                 'statusprestasi' => 'disetujui'
             ],
             [
-                'user_id' => 2,
+                'user_id' => 3,
                 'namalomba' => 'Lomba Menulis',
                 'kategorilomba' => 'kelompok',
                 'tanggallomba' => '2024-04-15 13:00:00',

@@ -14,7 +14,7 @@ class ProkerSeeder extends Seeder
     public function run(): void
     {
         ProgamKerja::create([
-            'user_id' => 1,
+            'user_id' => 3,
             'nama_proker' => 'Pembuatan Buletin',
             'penanggung_jawab' => 'Eko Patrio',
             'uraian_proker' => 'Deskripsi Proker Pembuatan Buletin',
@@ -23,7 +23,7 @@ class ProkerSeeder extends Seeder
         ]);
 
         ProgamKerja::create([
-            'user_id' => 2,
+            'user_id' => 4,
             'nama_proker' => 'Bakti Sosial',
             'penanggung_jawab' => 'Mega Astuti',
             'uraian_proker' => 'Deskripsi Proker Bakti Sosial',
@@ -32,7 +32,7 @@ class ProkerSeeder extends Seeder
         ]);
 
         ProgamKerja::create([
-            'user_id' => 2,
+            'user_id' => 4,
             'nama_proker' => 'Bela Negara',
             'penanggung_jawab' => 'Yoman Dewata',
             'uraian_proker' => 'Deskripsi Proker Bela Negara',

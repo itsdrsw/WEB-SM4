@@ -8,10 +8,27 @@ use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
 {
-    public function run()
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
     {
         // Membuat data user langsung dalam seeder
         $userData = [
+            [
+                'name' => 'Kemahasiswaan',
+                'email' => 'marswan27@gmail.com',
+                'ketua' => 'Bambang',
+                'role' => 'kemahasiswaan',
+                'password' => bcrypt('bambang'),
+            ],
+            [
+                'name' => 'Koordinator',
+                'email' => 'masterdim39@gmail.com',
+                'ketua' => 'Luluk',
+                'role' => 'bem',
+                'password' => bcrypt('bem123'),
+            ],
             [
                 'name' => 'UKM Explant',
                 'email' => 'ukmexplant@polije.ac.id',

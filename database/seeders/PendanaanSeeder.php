@@ -15,13 +15,13 @@ class PendanaanSeeder extends Seeder
     {
         $pendanaan = [
             [
-                'user_id' => 1,
+                'user_id' => 3,
                 'kegiatan_id' => 1,
                 'anggaran_tersedia' => 20000000,
                 'periode' => 2024,
             ],
             [
-                'user_id' => 2,
+                'user_id' => 4,
                 'kegiatan_id' => 2,
                 'anggaran_tersedia' => 25000000,
                 'periode' => 2024,

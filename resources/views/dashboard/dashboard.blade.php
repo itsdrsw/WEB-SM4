@@ -29,8 +29,8 @@
                         <!-- small box -->
                         <div class="small-box bg-info">
                             <div class="inner">
-                                <h3>{{ $barang }}</h3>
-                                <p>Prestasi</p>
+                                <h3>{{ $jmlprestasi }}</h3>
+                                <p>Total Prestasi</p>
                             </div>
                             <div class="icon">
                                 <i class="nav-icon fa-solid fa-trophy"></i>
@@ -44,14 +44,14 @@
                         <!-- small box -->
                         <div class="small-box bg-secondary">
                             <div class="inner">
-                                <h3>{{$barang}}<sup style="font-size: 20px"></sup></h3>
+                                <h3>{{ $jmlproker }}</h3>
 
-                                <p>Progam Kerja</p>
+                                <p>Total Progam Kerja</p>
                             </div>
                             <div class="icon">
                                 <i class="nav-icon fa-solid fa-book-open"></i>
                             </div>
-                            <a href="#" class="small-box-footer">Selengkapnya <i
+                            <a href="/proker" class="small-box-footer">Selengkapnya <i
                                     class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
@@ -60,14 +60,14 @@
                         <!-- small box -->
                         <div class="small-box bg-success">
                             <div class="inner">
-                                <h3>{{$barang}}</h3>
+                                <h3>{{ $jmlkegiatan }}</h3>
+                                <p>Total Kegiatan</p>
 
-                                <p>Kegiatan</p>
                             </div>
                             <div class="icon">
                                 <i class="nav-icon fa-solid fa-calendar-check"></i>
                             </div>
-                            <a href="#" class="small-box-footer">Selengkapnya <i
+                            <a href="/kegiatan" class="small-box-footer">Selengkapnya <i
                                     class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>

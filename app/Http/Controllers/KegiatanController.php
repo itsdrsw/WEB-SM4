@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kegiatan;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -13,14 +12,32 @@ class KegiatanController extends Controller
     //
     public function index()
     {
+        $role = auth()->user()->role;
         $kegiatan = Kegiatan::join('users', 'kegiatan.user_id', '=', 'users.id')
             ->join('progam_kerja', 'kegiatan.proker_id', '=', 'progam_kerja.idproker')
             ->select('kegiatan.*', 'users.name as user_name', 'progam_kerja.nama_proker', 'progam_kerja.penanggung_jawab as proker_penanggung_jawab')
-            ->orderBy('kegiatan.nama_kegiatan', 'asc')
-            ->get();
+            ->orderBy('kegiatan.nama_kegiatan', 'asc');
+
+        if ($role == 'kemahasiswaan') {
+            $kegiatan->where(function ($query) {
+                $query->where('kegiatan.status_kegiatan', 'perbaikanbem')
+                    ->orWhere('kegiatan.status_kegiatan', 'perbaikankemahasiswaan')
+                    ->orWhere('kegiatan.status_kegiatan', 'revisikemahasiswaan')
+                    ->orWhere('kegiatan.status_kegiatan', 'pencairan')
+                    ->orWhere('kegiatan.status_kegiatan', 'selesai');
+            });
+        } elseif ($role == 'bem') {
+            $kegiatan->where(function ($query) {
+                $query->where('kegiatan.status_kegiatan', 'terkirim')
+                    ->orWhere('kegiatan.status_kegiatan', 'revisibem');
+            });
+        }
+
+        $kegiatan = $kegiatan->get();
 
         return view('kegiatan.kegiatan', compact('kegiatan'));
     }
+
 
     public function edit($idkegiatan)
     {

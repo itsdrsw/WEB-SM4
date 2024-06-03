@@ -1,6 +1,9 @@
 <?php
 
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\LoginMobileController;
+use App\Http\Controllers\PrestasiMobileController;
+use App\Http\Controllers\ProkerMobileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,10 +18,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
-Route::post('/register', [LoginController::class, '']);
-Route::post('/login', [LoginController::class, 'loginApi']);
-Route::get('/getUserData', [LoginController::class, 'getUserData']);

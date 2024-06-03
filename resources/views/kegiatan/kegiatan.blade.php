@@ -60,7 +60,7 @@
                                                     PDF</a>
                                             </td>
                                             <td>
-                                                <button class="btn btn-outline-info btn-sm" data-toggle="modal"
+                                                <button class="btn btn-outline-secondary btn-sm" data-toggle="modal"
                                                     data-target="#gambarModal{{ $datakegiatan->idkegiatan }}">
                                                     <i class="fa-solid fa-eye"></i> Lihat
                                                 </button>
@@ -145,6 +145,26 @@
                                                     <span class="badge badge-warning">
                                                         <i class="fa-solid fa-file-signature"></i>
                                                         Revisi
+                                                    </span>
+                                                    <?php elseif ($datakegiatan->status_kegiatan == 'revisibem'): ?>
+                                                    <span class="badge badge-info">
+                                                        <i class="fa-solid fa-file-signature"></i>
+                                                        Revisi Bem
+                                                    </span>
+                                                    <?php elseif ($datakegiatan->status_kegiatan == 'perbaikanbem'): ?>
+                                                    <span class="badge badge-warning">
+                                                        <i class="fa-solid fa-file-signature"></i>
+                                                        Perbaikan Bem
+                                                    </span>
+                                                    <?php elseif ($datakegiatan->status_kegiatan == 'revisikemahasiswaan'): ?>
+                                                    <span class="badge badge-info">
+                                                        <i class="fa-solid fa-file-signature"></i>
+                                                        Revisi Kemahasiswaan
+                                                    </span>
+                                                    <?php elseif ($datakegiatan->status_kegiatan == 'perbaikankemahasiswaan'): ?>
+                                                    <span class="badge badge-warning">
+                                                        <i class="fa-solid fa-file-signature"></i>
+                                                        Perbaikan Kemahasiswaan
                                                     </span>
                                                     <?php elseif ($datakegiatan->status_kegiatan == 'pencairan'): ?>
                                                     <span class="badge badge-primary">
