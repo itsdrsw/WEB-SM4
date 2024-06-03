@@ -3,6 +3,7 @@
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\LoginMobileController;
 use App\Http\Controllers\MobileLoginController;
+use App\Http\Controllers\MobilePrestasiController;
 use App\Http\Controllers\PrestasiMobileController;
 use App\Http\Controllers\ProkerMobileController;
 use Illuminate\Http\Request;
@@ -35,3 +36,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::middleware('auth:sanctum')->post('validate-old-password', [MobileLoginController::class, 'validateOldPassword']);
 
+Route::post('prestasi', [MobilePrestasiController::class, 'store']);
+Route::get('prestasi', [MobilePrestasiController::class, 'index']);
+Route::post('prestasi/{idprestasi}', [MobilePrestasiController::class, 'updatePrestasi']);
