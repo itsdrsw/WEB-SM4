@@ -138,33 +138,33 @@
                                             <td>
                                                 <h5>
                                                     <?php if ($datakegiatan->status_kegiatan == 'terkirim'): ?>
-                                                    <span class="badge badge-warning">
+                                                    <span class="badge badge-light">
                                                         <i class="fa-solid fa-circle-info"></i> Terkirim
                                                     </span>
-                                                    <?php elseif ($datakegiatan->status_kegiatan == 'revisi'): ?>
+                                                    <?php elseif ($datakegiatan->status_kegiatan == 'revisibem'): ?>
                                                     <span class="badge badge-warning">
                                                         <i class="fa-solid fa-file-signature"></i>
-                                                        Revisi
+                                                        Revisi BEM
                                                     </span>
-                                                    <?php elseif ($datakegiatan->status_kegiatan == 'revisibem'): ?>
+                                                    <?php elseif ($datakegiatan->status_kegiatan == 'revisiukmbem'): ?>
                                                     <span class="badge badge-info">
                                                         <i class="fa-solid fa-file-signature"></i>
-                                                        Revisi Bem
+                                                        Revisi UKM-BEM
                                                     </span>
-                                                    <?php elseif ($datakegiatan->status_kegiatan == 'perbaikanbem'): ?>
-                                                    <span class="badge badge-warning">
+                                                    <?php elseif ($datakegiatan->status_kegiatan == 'ajuanukm'): ?>
+                                                    <span class="badge badge-light">
                                                         <i class="fa-solid fa-file-signature"></i>
-                                                        Perbaikan Bem
+                                                        Ajuan UKM
                                                     </span>
                                                     <?php elseif ($datakegiatan->status_kegiatan == 'revisikemahasiswaan'): ?>
-                                                    <span class="badge badge-info">
+                                                    <span class="badge badge-warning">
                                                         <i class="fa-solid fa-file-signature"></i>
                                                         Revisi Kemahasiswaan
                                                     </span>
-                                                    <?php elseif ($datakegiatan->status_kegiatan == 'perbaikankemahasiswaan'): ?>
-                                                    <span class="badge badge-warning">
-                                                        <i class="fa-solid fa-file-signature"></i>
-                                                        Perbaikan Kemahasiswaan
+                                                    <?php elseif ($datakegiatan->status_kegiatan == 'revisiukmkemahasiswaan'): ?>
+                                                    <span class="badge badge-info">
+                                                        <i class="fa-solid fa-paper-plane"></i>
+                                                        Revisi UKM
                                                     </span>
                                                     <?php elseif ($datakegiatan->status_kegiatan == 'pencairan'): ?>
                                                     <span class="badge badge-primary">
@@ -182,18 +182,33 @@
                                             {{-- <td>Rp. {{ number_format($data->price, 0) }}</td> --}}
                                             {{-- <td>{{ $data->note }}</td> --}}
                                             <td>
+                                                <?php if ($datakegiatan->status_kegiatan == 'terkirim' ||
+                                                $datakegiatan->status_kegiatan == 'revisiukmbem' ||
+                                                $datakegiatan->status_kegiatan == 'revisirevisiukmkemahasiswaan' ||
+                                                $datakegiatan->status_kegiatan == 'ajuanukm'): ?>
                                                 <form class="d-inline"
                                                     action="/kegiatan/{{ $datakegiatan->idkegiatan }}/edit" method="GET">
                                                     <button type="submit" class="btn btn-success btn-sm mr-1">
                                                         <i class="fa-solid fa-square-pen"></i> Edit
                                                     </button>
                                                 </form>
+                                                <?php elseif ($datakegiatan->status_kegiatan == 'revisibem'||
+                                                $datakegiatan->status_kegiatan == 'revisikemahasiswaan' ||
+                                                $datakegiatan->status_kegiatan == 'pencairan'||
+                                                $datakegiatan->status_kegiatan == 'selesai'): ?>
+                                                <form class="d-inline"
+                                                    action="/kegiatan/{{ $datakegiatan->idkegiatan }}/edit" method="GET">
+                                                    <button type="submit" class="btn btn-success btn-sm mr-1" disabled>
+                                                        <i class="fa-solid fa-square-pen"></i> Edit
+                                                    </button>
+                                                </form>
+                                                <?php endif; ?>
                                                 <form class="d-inline" action="/kegiatan/{{ $datakegiatan->id_user }}"
                                                     method="POST">
                                                     @csrf
                                                     @method('delete')
-                                                    <button type="submit" class="btn btn-danger btn-sm" id="btn-delete"><i
-                                                            class="fa-solid fa-trash-can"></i> Delete
+                                                    <button type="submit" class="btn btn-danger btn-sm"
+                                                        id="btn-delete"><i class="fa-solid fa-trash-can"></i> Delete
                                                     </button>
                                                 </form>
                                             </td>

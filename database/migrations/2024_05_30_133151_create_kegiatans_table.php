@@ -23,7 +23,7 @@ return new class extends Migration
             $table->integer('dana_cair')->nullable(); // Kolom untuk Pengajuan Dana
             $table->year('periode'); // Kolom untuk Periode
             $table->string('proposal_kegiatan')->nullable(); // Kolom untuk Proposal Kegiatan to store the PDF filename
-            $table->enum('status_kegiatan', ['terkirim', 'revisibem','perbaikanbem','revisikemahasiswaan','perbaikankemahasiswaan', 'pencairan', 'selesai'])->default('terkirim'); // Kolom untuk Status Kegiatan
+            $table->enum('status_kegiatan', ['terkirim', 'revisibem', 'revisiukmbem','ajuanukm','revisikemahasiswaan','revisiukmkemahasiswaan', 'pencairan', 'selesai'])->default('terkirim'); // Kolom untuk Status Kegiatan
             $table->timestamps();
         });
     }

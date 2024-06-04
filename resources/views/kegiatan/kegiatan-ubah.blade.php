@@ -73,15 +73,30 @@
                                         <div class="form-group">
                                             <label for="status_kegiatan">Status Kegiatan</label>
                                             <select class="custom-select" id="status_kegiatan" name="status_kegiatan">
-                                                <option value="revisi"
-                                                    {{ $kegiatan_ubah->status_kegiatan == 'revisi' ? 'selected' : '' }}>
-                                                    Revisi</option>
-                                                <option value="pencairan"
-                                                    {{ $kegiatan_ubah->status_kegiatan == 'pencairan' ? 'selected' : '' }}>
-                                                    Pencairan</option>
-                                                <option value="selesai"
-                                                    {{ $kegiatan_ubah->status_kegiatan == 'selesai' ? 'selected' : '' }}>
-                                                    Selesai</option>
+                                                @if (Auth::user()->role == 'bem')
+                                                    <option value="revisiukmbem"
+                                                        {{ $kegiatan_ubah->status_kegiatan == 'revisiukmbem' ? 'selected' : '' }}>
+                                                        Revisi UKM BEM</option>
+                                                    <option value="revisibem"
+                                                        {{ $kegiatan_ubah->status_kegiatan == 'revisibem' ? 'selected' : '' }}>
+                                                        Revisi BEM</option>
+                                                @elseif(Auth::user()->role == 'kemahasiswaan')
+                                                    <option value="ajuanukm"
+                                                        {{ $kegiatan_ubah->status_kegiatan == 'ajuanukm' ? 'selected' : '' }}>
+                                                        Ajuan UKM</option>
+                                                    <option value="perbaikankemahasiswaan"
+                                                        {{ $kegiatan_ubah->status_kegiatan == 'revisikemahasiswaan' ? 'selected' : '' }}>
+                                                        Revisi Kemahasiswaan</option>
+                                                    <option value="revisikemahasiswaan"
+                                                        {{ $kegiatan_ubah->status_kegiatan == 'revisiukmkemahasiswaan' ? 'selected' : '' }}>
+                                                        Revisi UKM</option>
+                                                    <option value="pencairan"
+                                                        {{ $kegiatan_ubah->status_kegiatan == 'pencairan' ? 'selected' : '' }}>
+                                                        Pencairan</option>
+                                                    <option value="selesai"
+                                                        {{ $kegiatan_ubah->status_kegiatan == 'selesai' ? 'selected' : '' }}>
+                                                        Selesai</option>
+                                                @endif
                                             </select>
                                             @error('status_kegiatan')
                                                 <span class="invalid-feedback text-danger">{{ $message }}</span>
@@ -103,10 +118,19 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="form-group">
+                                            @if (Auth::user()->role == 'bem')
+                                            <label hidden for="name">Dana Disetujui</label>
+                                                <input type="hidden" name="dana_cair"
+                                                    class="form-control @error('dana_cair') is-invalid @enderror"
+                                                    id="name" placeholder="Masukkan nominal dana"
+                                                    value="{{ old('dana_cair', $kegiatan_ubah->dana_cair) }}">
+                                            @elseif(Auth::user()->role == 'kemahasiswaan')
                                             <label for="name">Dana Disetujui</label>
-                                            <input type="number" name="dana_cair"
-                                                class="form-control @error('dana_cair') is-invalid @enderror" id="name"
-                                                placeholder="Masukkan nominal dana" value="{{ old('dana_cair', $kegiatan_ubah->dana_cair) }}">
+                                                <input type="number" name="dana_cair"
+                                                    class="form-control @error('dana_cair') is-invalid @enderror"
+                                                    id="name" placeholder="Masukkan nominal dana"
+                                                    value="{{ old('dana_cair', $kegiatan_ubah->dana_cair) }}">
+                                            @endif
                                             @error('dana_cair')
                                                 <span class="invalid-feedback text-danger">{{ $message }}</span>
                                             @enderror
@@ -126,7 +150,6 @@
             </div>
             <!-- /.content -->
         </div>
-    </div>
     </div>
 
 @endsection

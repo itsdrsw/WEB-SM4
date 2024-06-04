@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kegiatan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -20,8 +21,8 @@ class KegiatanController extends Controller
 
         if ($role == 'kemahasiswaan') {
             $kegiatan->where(function ($query) {
-                $query->where('kegiatan.status_kegiatan', 'perbaikanbem')
-                    ->orWhere('kegiatan.status_kegiatan', 'perbaikankemahasiswaan')
+                $query->where('kegiatan.status_kegiatan', 'ajuanukm')
+                    ->orWhere('kegiatan.status_kegiatan', 'revisiukmkemahasiswaan')
                     ->orWhere('kegiatan.status_kegiatan', 'revisikemahasiswaan')
                     ->orWhere('kegiatan.status_kegiatan', 'pencairan')
                     ->orWhere('kegiatan.status_kegiatan', 'selesai');
@@ -29,7 +30,8 @@ class KegiatanController extends Controller
         } elseif ($role == 'bem') {
             $kegiatan->where(function ($query) {
                 $query->where('kegiatan.status_kegiatan', 'terkirim')
-                    ->orWhere('kegiatan.status_kegiatan', 'revisibem');
+                    ->orWhere('kegiatan.status_kegiatan', 'revisibem')
+                    ->orWhere('kegiatan.status_kegiatan', 'revisiukmbem');;
             });
         }
 
@@ -58,7 +60,7 @@ class KegiatanController extends Controller
             // Validasi lainnya
             'dana_cair' => 'nullable|numeric',
             'proposal_kegiatan' => 'nullable|mimes:pdf|max:3000', // Hanya file PDF dengan ukuran maksimum 3MB yang diterima
-            'status_kegiatan' => 'required|in:revisi,pencairan,selesai', // Ubah menjadi lowercase sesuai inputan di blade
+            'status_kegiatan' => 'required|in:revisibem,revisiukmbem,ajuanukm,revisikemahasiswaan,revisiukmkemahasiswaan,pencairan,selesai',
         ]);
 
         $kegiatan = Kegiatan::findOrFail($idkegiatan);
@@ -77,10 +79,26 @@ class KegiatanController extends Controller
             }
 
             $validated['proposal_kegiatan'] = $proposalPath;
-        }
 
-        // Set nilai status kegiatan dari input formulir
-        $validated['status_kegiatan'] = $request->status_kegiatan;
+            // Set status_kegiatan berdasarkan role dan adanya file upload
+            if (Auth::user()->role == 'bem') {
+                $validated['status_kegiatan'] = 'revisibem';
+            } elseif (Auth::user()->role == 'kemahasiswaan') {
+                $validated['status_kegiatan'] = 'revisikemahasiswaan';
+            }
+        } else {
+            // Set status_kegiatan berdasarkan role tanpa file upload
+            if (Auth::user()->role == 'bem') {
+                $validated['status_kegiatan'] = 'ajuanukm';
+            } elseif (Auth::user()->role == 'kemahasiswaan') {
+                $validated['status_kegiatan'] = 'pencairan';
+
+                // Validate dana_cair field for role kemahasiswaan
+                $request->validate([
+                    'dana_cair' => 'required|numeric',
+                ]);
+            }
+        }
 
         // Simpan perubahan dengan validasi yang sudah diatur sebelumnya
         $kegiatan->update($validated);
