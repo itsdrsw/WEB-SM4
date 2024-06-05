@@ -399,9 +399,6 @@ final class EnglishInflector implements InflectorInterface
 
         // aircraft
         'tfarcria',
-
-        // hardware
-        'erawdrah',
     ];
 
     public function singularize(string $plural): array
