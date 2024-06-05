@@ -1,5 +1,5 @@
 @extends('template.main')
-@section('title', 'Progam Kerja')
+@section('title', 'Program Kerja')
 @section('content')
 
     <!-- Content Header (Page header) -->
@@ -41,7 +41,7 @@
                                     <tr>
                                         <th>No.</th>
                                         <th>Ormawa</th>
-                                        <th>Nama Progam Kerja</th>
+                                        <th>Nama Program Kerja</th>
                                         <th>Uraian</th>
                                         <th>Lampiran</th>
                                         <th>Status Proker</th>
@@ -67,7 +67,7 @@
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title" id="gambarModalLabel">Detail
-                                                                    Progam Kerja</h5>
+                                                                    Program Kerja</h5>
                                                                 <button type="button" class="close" data-dismiss="modal"
                                                                     aria-label="Close">
                                                                     <span aria-hidden="true">&times;</span>
@@ -83,7 +83,7 @@
                                                                                 {{ $dataproker->name }}</td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <th scope="row" class="text-left">Nama Progam Kerja</th>
+                                                                            <th scope="row" class="text-left">Nama Program Kerja</th>
                                                                             <td class="text-left">:
                                                                                 {{ $dataproker->nama_proker }}</td>
                                                                         </tr>

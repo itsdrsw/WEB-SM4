@@ -1,5 +1,5 @@
 @extends('template.main')
-@section('title', 'Ubah Progam Kerja')
+@section('title', 'Ubah Program Kerja')
 @section('content')
 
     <!-- Content Header (Page header) -->

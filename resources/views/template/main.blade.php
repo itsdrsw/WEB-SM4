@@ -233,7 +233,7 @@
                             <a href="/proker" class="nav-link">
                                 <i class="nav-icon fa-solid fa-book-open"></i>
                                 <p>
-                                    Progam Kerja
+                                    Program Kerja
                                 </p>
                             </a>
                         </li>

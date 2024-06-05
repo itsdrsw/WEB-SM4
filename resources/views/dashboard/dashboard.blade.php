@@ -30,7 +30,7 @@
                         <div class="small-box bg-info">
                             <div class="inner">
                                 <h3>{{ $jmlprestasi }}</h3>
-                                <p>Total Prestasi</p>
+                                <b><p style="color:#ECECEC">Total Prestasi</p></b>
                             </div>
                             <div class="icon">
                                 <i class="nav-icon fa-solid fa-trophy"></i>
@@ -45,8 +45,7 @@
                         <div class="small-box bg-secondary">
                             <div class="inner">
                                 <h3>{{ $jmlproker }}</h3>
-
-                                <p>Total Progam Kerja</p>
+                                <b><p style="color:#ECECEC">Total Program Kerja</p></b>
                             </div>
                             <div class="icon">
                                 <i class="nav-icon fa-solid fa-book-open"></i>
@@ -61,7 +60,7 @@
                         <div class="small-box bg-success">
                             <div class="inner">
                                 <h3>{{ $jmlkegiatan }}</h3>
-                                <p>Total Kegiatan</p>
+                                <b><p style="color:#ECECEC">Total Kegiatan</p></b>
 
                             </div>
                             <div class="icon">
