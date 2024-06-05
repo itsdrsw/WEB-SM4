@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedInteger('proker_id'); // Kolom foreign key
             $table->foreign('proker_id')->references('idproker')->on('progam_kerja');
             $table->string('file_lpj')->nullable(); // Menambahkan kolom file_lpj
-            $table->enum('status_lpj', ['terkirim','revisi','perbaikan revisi','disetujui'])->default('terkirim');
+            $table->enum('status_lpj', ['terkirim','revisi','perbaikanrevisi','disetujui'])->default('terkirim');
             $table->timestamps();
         });
     }

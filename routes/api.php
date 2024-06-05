@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\LoginMobileController;
+use App\Http\Controllers\LPJController;
+use App\Http\Controllers\MobileDashboardController;
 use App\Http\Controllers\MobileLoginController;
+use App\Http\Controllers\MobilePendanaanController;
 use App\Http\Controllers\MobilePrestasiController;
 use App\Http\Controllers\MobileProkerController;
 use App\Http\Controllers\PrestasiMobileController;
@@ -44,3 +47,10 @@ Route::post('prestasi/{idprestasi}', [MobilePrestasiController::class, 'updatePr
 Route::get('proker', [MobileProkerController::class, 'index']);
 Route::post('proker', [MobileProkerController::class, 'store']);
 Route::post('proker/{id}', [MobileProkerController::class, 'updateLampiranProker']);
+
+Route::get('dashboard/counts', [MobileDashboardController::class, 'getCounts']);
+
+Route::get('/pendanaan', [MobilePendanaanController::class, 'index']);
+
+Route::get('lpj/{user_id}', [LPJController::class, 'getlpj']);
+

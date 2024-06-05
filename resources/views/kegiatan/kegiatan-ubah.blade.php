@@ -69,7 +69,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-6">
+                                    {{-- <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="status_kegiatan">Status Kegiatan</label>
                                             <select class="custom-select" id="status_kegiatan" name="status_kegiatan">
@@ -102,8 +102,8 @@
                                                 <span class="invalid-feedback text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
-                                    </div>
-                                    <div class="col-lg-6">
+                                    </div> --}}
+                                    <div class="col-lg-12">
                                         <div class="form-group">
                                             <label for="proposal_kegiatan">Proposal Kegiatan</label>
                                             <input type="file" name="proposal_kegiatan"
