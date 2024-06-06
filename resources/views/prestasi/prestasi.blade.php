@@ -121,6 +121,12 @@
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
+                                                                                <th scope="row" class="text-left">Catatan</th>
+                                                                                <td class="text-left">:
+                                                                                    {{ $dataprestasi->note }}
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
                                                                                 <th scope="row" class="text-left">
                                                                                     Sertifikat</th>
                                                                                 <td colspan="2"><img

@@ -34,59 +34,92 @@ class PrestasiController extends Controller
         ]);
     }
 
+    public function update(Request $request, $idprestasi)
+    {
+        // Validasi input
+        $validated = $request->validate([
+            'note' => 'nullable|max:200',
+        ]);
+
+        // Ambil data prestasi berdasarkan ID
+        $prestasi = Prestasi::findOrFail($idprestasi);
+
+        // Jika tidak ada input 'note', atur 'note' menjadi null untuk menghapusnya
+        if (!$request->input('note')) {
+            // Update status menjadi 'disetujui' karena tidak ada input pada 'note'
+            $prestasi->update([
+                'note' => null,
+                'statusprestasi' => 'disetujui'
+            ]);
+        } else {
+            // Jika ada input pada 'note', atur 'statusprestasi' menjadi 'ditolak'
+            $prestasi->update([
+                'note' => $validated['note'],
+                'statusprestasi' => 'ditolak'
+            ]);
+        }
+
+        // Memberikan notifikasi sukses
+        Alert::info('Success', 'Data Prestasi berhasil disimpan!');
+        return redirect('/prestasi');
+    }
+
+
+
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $idprestasi)
-    {
-        $validated = $request->validate([
-            // Validasi lainnya
-            'sertifikat' => 'nullable|mimes:jpeg,png,jpg,pdf|max:2048',
-            'dokumentasi' => 'nullable|mimes:jpeg,png,jpg,pdf|max:2048',
-            'status_prestasi' => 'required|in:disetujui,ditolak',
-        ]);
+    // public function update(Request $request, $idprestasi)
+    // {
+    //     $validated = $request->validate([
+    //         // Validasi lainnya
+    //         'sertifikat' => 'nullable|mimes:jpeg,png,jpg,pdf|max:2048',
+    //         'dokumentasi' => 'nullable|mimes:jpeg,png,jpg,pdf|max:2048',
+    //         'status_prestasi' => 'required|in:disetujui,ditolak',
+    //         'note' => 'nullable|max:300',
+    //     ]);
 
-        $prestasi = Prestasi::findOrFail($idprestasi);
+    //     $prestasi = Prestasi::findOrFail($idprestasi);
 
-        // Proses gambar sertifikat
-        if ($request->hasFile('sertifikat')) {
-            $file = $request->file('sertifikat');
-            $fileName = $file->getClientOriginalName(); // Menggunakan nama asli file
+    //     // Proses gambar sertifikat
+    //     if ($request->hasFile('sertifikat')) {
+    //         $file = $request->file('sertifikat');
+    //         $fileName = $file->getClientOriginalName(); // Menggunakan nama asli file
 
-            // Menyimpan file ke folder public/sertifikat
-            $sertifikatPath = $file->storeAs('sertifikat', $fileName, 'public');
+    //         // Menyimpan file ke folder public/sertifikat
+    //         $sertifikatPath = $file->storeAs('sertifikat', $fileName, 'public');
 
-            // Hapus file lama jika ada
-            if ($prestasi->sertifikat) {
-                Storage::delete('public/' . $prestasi->sertifikat);
-            }
+    //         // Hapus file lama jika ada
+    //         if ($prestasi->sertifikat) {
+    //             Storage::delete('public/' . $prestasi->sertifikat);
+    //         }
 
-            $validated['sertifikat'] = $sertifikatPath;
-        }
+    //         $validated['sertifikat'] = $sertifikatPath;
+    //     }
 
-        // Proses gambar dokumentasi
-        if ($request->hasFile('dokumentasi')) {
-            $file = $request->file('dokumentasi');
-            $fileName = $file->getClientOriginalName(); // Menggunakan nama asli file
+    //     // Proses gambar dokumentasi
+    //     if ($request->hasFile('dokumentasi')) {
+    //         $file = $request->file('dokumentasi');
+    //         $fileName = $file->getClientOriginalName(); // Menggunakan nama asli file
 
-            // Menyimpan file ke folder public/sertifikat
-            $dokumentasiPath = $file->storeAs('dokumentasi', $fileName, 'public');
+    //         // Menyimpan file ke folder public/sertifikat
+    //         $dokumentasiPath = $file->storeAs('dokumentasi', $fileName, 'public');
 
-            // Hapus file lama jika ada
-            if ($prestasi->dokumentasi) {
-                Storage::delete('public/' . $prestasi->dokumentasi);
-            }
+    //         // Hapus file lama jika ada
+    //         if ($prestasi->dokumentasi) {
+    //             Storage::delete('public/' . $prestasi->dokumentasi);
+    //         }
 
-            $validated['dokumentasi'] = $dokumentasiPath;
-        }
+    //         $validated['dokumentasi'] = $dokumentasiPath;
+    //     }
 
-        // Set nilai status prestasi dari input formulir
-        $validated['statusprestasi'] = $request->status_prestasi;
+    //     // Set nilai status prestasi dari input formulir
+    //     $validated['statusprestasi'] = $request->status_prestasi;
 
-        // Simpan perubahan dengan validasi yang sudah diatur sebelumnya
-        $prestasi->update($validated);
+    //     // Simpan perubahan dengan validasi yang sudah diatur sebelumnya
+    //     $prestasi->update($validated);
 
-        Alert::info('Success', 'Data Prestasi berhasil disimpan !');
-        return redirect('/prestasi');
-    }
+    //     Alert::info('Success', 'Data Prestasi berhasil disimpan !');
+    //     return redirect('/prestasi');
+    // }
 }

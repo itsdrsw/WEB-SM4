@@ -69,10 +69,10 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    {{-- <div class="col-lg-6">
+                                    <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label for="status_kegiatan">Status Kegiatan</label>
-                                            <select class="custom-select" id="status_kegiatan" name="status_kegiatan">
+                                            {{-- <label for="status_kegiatan">Status Kegiatan</label> --}}
+                                            <select type="hidden" style="display: none" class="custom-select" id="status_kegiatan" name="status_kegiatan">
                                                 @if (Auth::user()->role == 'bem')
                                                     <option value="revisiukmbem"
                                                         {{ $kegiatan_ubah->status_kegiatan == 'revisiukmbem' ? 'selected' : '' }}>
@@ -102,7 +102,7 @@
                                                 <span class="invalid-feedback text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
-                                    </div> --}}
+                                    </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label for="proposal_kegiatan">Proposal Kegiatan</label>

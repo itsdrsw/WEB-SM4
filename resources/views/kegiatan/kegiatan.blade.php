@@ -184,7 +184,7 @@
                                             <td>
                                                 <?php if ($datakegiatan->status_kegiatan == 'terkirim' ||
                                                 $datakegiatan->status_kegiatan == 'revisiukmbem' ||
-                                                $datakegiatan->status_kegiatan == 'revisirevisiukmkemahasiswaan' ||
+                                                $datakegiatan->status_kegiatan == 'revisiukmkemahasiswaan' ||
                                                 $datakegiatan->status_kegiatan == 'ajuanukm'): ?>
                                                 <form class="d-inline"
                                                     action="/kegiatan/{{ $datakegiatan->idkegiatan }}/edit" method="GET">

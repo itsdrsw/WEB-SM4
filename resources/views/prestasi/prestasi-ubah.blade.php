@@ -54,11 +54,11 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label for="category">Ketegori Lomba</label>
-                                            <input type="text" name="kategorilomba"
-                                                class="form-control @error('kategorilomba') is-invalid @enderror"
+                                            <label for="category">Nama Lomba</label>
+                                            <input type="text" name="namalomba"
+                                                class="form-control @error('namalomba') is-invalid @enderror"
                                                 id="kategorilomba" placeholder="Masukkan Nama Lengkap"
-                                                value="{{ old('kategorilomba', $prestasi_ubah->kategorilomba) }}" readonly>
+                                                value="{{ old('namalomba', $prestasi_ubah->namalomba) }}" readonly>
                                             @error('ketua')
                                                 <span class="invalid-feedback text-danger">{{ $message }}</span>
                                             @enderror
@@ -68,22 +68,19 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label for="status_prestasi">Status Prestasi</label>
-                                            <select class="custom-select" id="status_prestasi" name="status_prestasi">
-                                                <option value="disetujui"
-                                                    {{ $prestasi_ubah->statusprestasi == 'disetujui' ? 'selected' : '' }}>
-                                                    Disetujui</option>
-                                                <option value="ditolak"
-                                                    {{ $prestasi_ubah->statusprestasi == 'ditolak' ? 'selected' : '' }}>
-                                                    Ditolak</option>
-                                            </select>
-                                            @error('status_prestasi')
+                                            <label for="category">Alasan Ditolak
+                                                <i style="color: red; font-size:10pt">*Silahkan sertakan alasan Anda jika data prestasi tidak valid. Kosongi jika telah valid.</i>
+                                            </label>
+                                            <textarea name="note" class="form-control @error('note') is-invalid @enderror"id="kategorilomba"
+                                                placeholder="Masukkan Alasan Anda" rows="4s">{{ old('note', $prestasi_ubah->notei) }}</textarea>
+                                            @error('note')
                                                 <span class="invalid-feedback text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
+
                                     </div>
                                 </div>
-                                <div class="row">
+                                {{-- <div class="row">
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="name">File Sertifikat</label>
@@ -102,6 +99,25 @@
                                                 class="form-control @error('dokumentasi') is-invalid @enderror"
                                                 id="dokumentasi" placeholder="File">
                                             @error('dokumentasi')
+                                                <span class="invalid-feedback text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div> --}}
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            {{-- <label for="status_prestasi">Status Prestasi</label> --}}
+                                            <select type="hidden" style="display: none" class="custom-select"
+                                                id="status_prestasi" name="status_prestasi">
+                                                <option value="disetujui"
+                                                    {{ $prestasi_ubah->statusprestasi == 'disetujui' ? 'selected' : '' }}>
+                                                    Disetujui</option>
+                                                <option value="ditolak"
+                                                    {{ $prestasi_ubah->statusprestasi == 'ditolak' ? 'selected' : '' }}>
+                                                    Ditolak</option>
+                                            </select>
+                                            @error('status_prestasi')
                                                 <span class="invalid-feedback text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>

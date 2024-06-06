@@ -265,7 +265,7 @@
                             <a href="/profil" class="nav-link">
                                 <i class="nav-icon fa-solid fa-user-tie"></i>
                                 <p>
-                                    Profil
+                                    Data Akun
                                 </p>
                             </a>
                         </li>
