@@ -11,7 +11,22 @@ class MobileLoginController extends Controller
 {
     public function register(Request $request)
     {
-        $akun = User::create($request->all());
+        // Validasi data input
+        $request->validate([
+            'name' => 'required|string|max:30',
+            'email' => 'required|string|email|max:50|unique:users',
+            'password' => 'required|string|min:8',
+            'ketua' => 'required|string|max:50',
+        ]);
+
+        // Hash password sebelum menyimpan
+        $akun = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'ketua' => $request->ketua,
+        ]);
+
         return response()->json(['message' => 'Success', 'data' => $akun]);
     }
 
