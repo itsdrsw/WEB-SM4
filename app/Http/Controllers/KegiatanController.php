@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kegiatan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -98,6 +99,20 @@ class KegiatanController extends Controller
                     'dana_cair' => 'required|numeric',
                 ]);
             }
+        }
+
+        // Dapatkan sisa anggaran
+        $sisaAnggaran = DB::table('pendanaan')
+            ->join('kegiatan', 'pendanaan.user_id', '=', 'kegiatan.user_id')
+            ->where('pendanaan.user_id', $kegiatan->user_id)
+            ->select(DB::raw('(pendanaan.anggaran_tersedia - SUM(kegiatan.dana_cair)) as sisa_anggaran'))
+            ->groupBy('pendanaan.anggaran_tersedia')
+            ->value('sisa_anggaran');
+
+        // Validasi dana_cair tidak melebihi sisa anggaran
+        if ($request->dana_cair > $sisaAnggaran) {
+            Alert::warning('Peringatan', 'Nominal pendanaan melebihi anggaran yang tersedia !');
+            return redirect()->back()->withErrors(['dana_cair' => 'Nominal kegiatan tidak boleh melebihi sisa anggaran yang tersedia.'])->withInput();
         }
 
         // Simpan perubahan dengan validasi yang sudah diatur sebelumnya
