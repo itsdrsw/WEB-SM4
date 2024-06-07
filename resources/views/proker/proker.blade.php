@@ -78,17 +78,20 @@
                                                                     class="table table-borderless table-striped-columns mt-3">
                                                                     <tbody style="pointer-events: none;">
                                                                         <tr>
-                                                                            <th scope="row" class="text-left">Nama Ormawa</th>
+                                                                            <th scope="row" class="text-left">Nama Ormawa
+                                                                            </th>
                                                                             <td class="text-left">:
                                                                                 {{ $dataproker->name }}</td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <th scope="row" class="text-left">Nama Program Kerja</th>
+                                                                            <th scope="row" class="text-left">Nama
+                                                                                Program Kerja</th>
                                                                             <td class="text-left">:
                                                                                 {{ $dataproker->nama_proker }}</td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <th scope="row" class="text-left">Penanggungjawab</th>
+                                                                            <th scope="row" class="text-left">
+                                                                                Penanggungjawab</th>
                                                                             <td class="text-left">:
                                                                                 {{ $dataproker->penanggung_jawab }}</td>
                                                                         </tr>
@@ -112,7 +115,9 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <a href="{{ Storage::url($dataproker->lampiran_proker) }}" class="btn btn-outline-secondary btn-sm" target="_blank">Unduh File PDF</a>
+                                                <a href="{{ Storage::url($dataproker->lampiran_proker) }}"
+                                                    class="btn btn-outline-secondary btn-sm" target="_blank">Unduh File
+                                                    PDF</a>
                                             </td>
                                             <td>
                                                 <h5>
@@ -124,11 +129,15 @@
                                                     <span class="badge badge-success">
                                                         <i class="fa-regular fa-circle-check"></i>
                                                         Disetujui
+                                                    </span><?php elseif ($dataproker->status_proker == 'perbaikanrevisi'): ?>
+                                                    <span class="badge badge-info">
+                                                        <i class="fa-solid fa-file-signature"></i>
+                                                        Telah Direvisi
                                                     </span>
-                                                    <?php elseif ($dataproker->status_proker == 'ditolak'): ?>
-                                                    <span class="badge badge-danger">
-                                                        <i class="fa-regular fa-circle-xmark"></i>
-                                                        Ditolak
+                                                    <?php elseif ($dataproker->status_proker == 'revisi'): ?>
+                                                    <span class="badge badge-warning">
+                                                        <i class="fa-solid fa-file-signature"></i>
+                                                        Revisi
                                                     </span>
                                                     <?php endif; ?>
                                                 </h5>
@@ -136,18 +145,29 @@
                                             {{-- <td>Rp. {{ number_format($data->price, 0) }}</td> --}}
                                             {{-- <td>{{ $data->note }}</td> --}}
                                             <td>
+                                                <?php if ($dataproker->status_proker == 'terkirim' ||
+                                                $dataproker->status_proker == 'perbaikanrevisi'): ?>
                                                 <form class="d-inline" action="/proker/{{ $dataproker->idproker }}/edit"
                                                     method="GET">
                                                     <button type="submit" class="btn btn-success btn-sm mr-1">
                                                         <i class="fa-solid fa-square-pen"></i> Edit
                                                     </button>
                                                 </form>
+                                                <?php elseif ($dataproker->status_proker == 'disetujui' ||
+                                                $dataproker->status_proker == 'revisi'): ?>
+                                                <form class="d-inline" action="/proker/{{ $dataproker->idproker }}/edit"
+                                                    method="GET">
+                                                    <button type="submit" class="btn btn-success btn-sm mr-1" disabled>
+                                                        <i class="fa-solid fa-square-pen"></i> Edit
+                                                    </button>
+                                                </form>
+                                                <?php endif; ?>
                                                 <form class="d-inline" action="/proker/{{ $dataproker->id_user }}"
                                                     method="POST">
                                                     @csrf
                                                     @method('delete')
-                                                    <button type="submit" class="btn btn-danger btn-sm"
-                                                        id="btn-delete"><i class="fa-solid fa-trash-can"></i> Delete
+                                                    <button type="submit" class="btn btn-danger btn-sm" id="btn-delete"><i
+                                                            class="fa-solid fa-trash-can"></i> Delete
                                                     </button>
                                                 </form>
                                             </td>

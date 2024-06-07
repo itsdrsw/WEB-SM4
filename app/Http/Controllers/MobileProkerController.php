@@ -71,6 +71,7 @@ class MobileProkerController extends Controller
             // Update lampiran_proker di database
             $proker->update([
                 'lampiran_proker' => $lampiranProkerPath,
+                'status_proker' => 'perbaikanrevisi',
             ]);
 
             return response()->json(['success' => true, 'message' => 'Lampiran proker berhasil diperbarui']);

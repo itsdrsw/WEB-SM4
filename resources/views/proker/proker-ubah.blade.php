@@ -69,29 +69,34 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label for="statusproker">Status Progam Kerja</label>
-                                            <select class="custom-select" id="statusproker" name="status_proker">
-                                                <option value="disetujui" {{ $proker_ubah->status_proker == 'disetujui' ? 'selected' : '' }}>
-                                                    Disetujui
-                                                </option>
-                                                <option value="ditolak" {{ $proker_ubah->status_proker == 'ditolak' ? 'selected' : '' }}>
-                                                    Ditolak
-                                                </option>
-                                            </select>
-                                            @error('status_proker')
-                                                <span class="invalid-feedback text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label for="name">File TOR</label>
+                                            <label for="name">File Program Kerja/TOR</label>
                                             <input type="file" name="lampiran_proker"
                                                 class="form-control @error('lampiran_proker') is-invalid @enderror"
                                                 id="lampiran_proker" placeholder="File" accept="application/pdf">
                                             @error('lampiran_proker')
+                                                <span class="invalid-feedback text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            {{-- <label for="statusproker">Status Progam Kerja</label> --}}
+                                            <select type="hidden" style="display: none" class="custom-select" id="statusproker"
+                                                name="status_proker">
+                                                <option value="disetujui"
+                                                    {{ $proker_ubah->status_proker == 'disetujui' ? 'selected' : '' }}>
+                                                    Disetujui
+                                                </option>
+                                                <option value="ditolak"
+                                                    {{ $proker_ubah->status_proker == 'ditolak' ? 'selected' : '' }}>
+                                                    Ditolak
+                                                </option>
+                                            </select>
+                                            @error('status_proker')
                                                 <span class="invalid-feedback text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>

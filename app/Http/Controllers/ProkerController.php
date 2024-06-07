@@ -36,7 +36,7 @@ class ProkerController extends Controller
         $validated = $request->validate([
             // Validasi lainnya
             'lampiran_proker' => 'nullable|mimes:pdf|max:3000', // Hanya file PDF dengan ukuran maksimum 3MB yang diterima
-            'status_proker' => 'required|in:disetujui,ditolak', // Ubah menjadi lowercase sesuai inputan di blade
+            'status_proker' => 'required|in:disetujui,revisi,perbaikanrevisi', // Ubah menjadi lowercase sesuai inputan di blade
         ]);
 
         $proker = ProgamKerja::findOrFail($idproker);
@@ -55,10 +55,13 @@ class ProkerController extends Controller
             }
 
             $validated['lampiran_proker'] = $lampiranPath;
-        }
 
-        // Set nilai status proker dari input formulir
-        $validated['status_proker'] = $request->status_proker;
+            // Secara otomatis mengatur status proker menjadi 'disetujui'
+            $validated['status_proker'] = 'revisi';
+        } else {
+            // Jika tidak ada file baru diunggah, gunakan status proker yang ada dalam request
+            $validated['status_proker'] = 'disetujui';
+        }
 
         // Simpan perubahan dengan validasi yang sudah diatur sebelumnya
         $proker->update($validated);
@@ -67,4 +70,3 @@ class ProkerController extends Controller
         return redirect('/proker');
     }
 }
-
