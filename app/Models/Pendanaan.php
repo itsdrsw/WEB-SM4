@@ -14,4 +14,11 @@ class Pendanaan extends Model
     protected $table = 'pendanaan';
 
     protected $guarded = ['idpendanaan'];
+
+    protected $fillable = ['periode','status_anggaran','anggaran_tersedia','user_id'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

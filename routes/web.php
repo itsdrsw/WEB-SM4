@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 Route::fallback(function () {
     return view('notfound', ['title' => 'PAGE NOT FOUND',]);
 });
@@ -51,7 +52,14 @@ Route::resource('/proker', ProkerController::class)->middleware(['auth', 'solo']
 Route::resource('/kegiatan', KegiatanController::class)->middleware(['auth', 'duel']);
 
 //route pendanaan
-Route::resource('/pendanaan', PendanaanController::class)->middleware(['auth', 'solo']);
+Route::middleware(['auth', 'solo'])->group(function () {
+    Route::resource('/pendanaan', PendanaanController::class);
+    // Rute untuk formulir penambahan pendanaan
+    Route::get('/pendanaan/create', [PendanaanController::class, 'createPendanaanForm'])->name('pendanaan.create');
+    // Rute untuk menyimpan data pendanaan
+    Route::post('/pendanaan', [PendanaanController::class, 'tambahPendanaan'])->name('pendanaan.tambah');
+});
+
 
 //route LPJ
 Route::resource('/lpj', LPJController::class)->middleware(['auth', 'solo']);
@@ -59,4 +67,3 @@ Route::resource('/lpj', LPJController::class)->middleware(['auth', 'solo']);
 // blokir akses
 Route::get('/blank/blokir-akses', [DashboardController::class, 'BlokirAksesView'])->name('blank.blokirAksesView');
 Route::get('/blank/blokir-akses-bem', [DashboardController::class, 'BlokirAksesBem'])->name('blank.blokirAksesBem');
-

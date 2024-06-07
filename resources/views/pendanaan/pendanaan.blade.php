@@ -29,7 +29,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="text-right">
-                                    <a href="/barang/create" class="btn btn-primary"><i class="fa-solid fa-circle-plus"></i>
+                                    <a href="/pendanaan/create" class="btn btn-primary"><i class="fa-solid fa-circle-plus"></i>
                                     </a>
                                 </div>
                             </div>
@@ -41,7 +41,7 @@
                                         <tr>
                                             <th>No.</th>
                                             <th>Ormawa</th>
-                                            <th>Anggaran Tersedia</th>
+                                            <th>Total Anggaran</th>
                                             <th>Anggaran Terpakai</th>
                                             <th>Sisa Anggaran</th>
                                             <th>Periode</th>
@@ -54,7 +54,7 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td style="text-align: left;">{{ $datapendanaan->name }}</td>
                                                 <td style="text-align: left;">Rp. {{ number_format($datapendanaan->anggaran_tersedia, 0, ',', '.') }}</td>
-                                                <td style="text-align: left;">Rp. {{ number_format($datapendanaan->total_dana, 0, ',', '.') }}</td>
+                                                <td style="text-align: left;">Rp. {{ number_format($datapendanaan->total_anggaran_terpakai, 0, ',', '.') }}</td>
                                                 <td style="text-align: left;">Rp. {{ number_format($datapendanaan->sisa_anggaran, 0, ',', '.') }}</td>
                                                 <td>
                                                     <span class="badge badge-secondary">
