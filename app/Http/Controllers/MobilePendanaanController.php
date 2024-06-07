@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kegiatan;
+use App\Models\Pendanaan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -9,33 +11,32 @@ class MobilePendanaanController extends Controller
 {
     public function index(Request $request)
     {
-        // Retrieve the user_id from the request
-        $user_id = $request->input('user_id');
+        // Ambil user_id dari request atau dari pengguna yang terautentikasi
+        $validatedData = $request->validate([
+            'user_id' => 'required|integer|exists:users,id',
+        ]);
 
-        // Validate that user_id is provided
-        if (!$user_id) {
-            return response()->json(['error' => 'User ID is required'], 400);
-        }
+        $user_id = $validatedData['user_id'];
 
-        // Fetch the funding data for the given user_id
-        $pendanaan = DB::table('users as u')
-            ->join('kegiatan as k', 'u.id', '=', 'k.user_id')
-            ->join('pendanaan as p', 'p.user_id', '=', 'u.id')
-            ->select(
-                'u.name',
-                'p.periode',
-                'p.status_anggaran',
-                DB::raw('GROUP_CONCAT(k.nama_kegiatan SEPARATOR ", ") as daftar_kegiatan'),
-                'p.anggaran_tersedia',
-                DB::raw('SUM(k.dana_cair) as total_dana'),
-                DB::raw('(p.anggaran_tersedia - SUM(k.dana_cair)) as sisa_anggaran')
-            )
-            ->where('u.id', $user_id)
-            ->groupBy('u.id', 'u.name', 'p.periode', 'p.status_anggaran', 'p.anggaran_tersedia')
+        // Ambil data Pendanaan berdasarkan user_id
+        $pendanaan = Pendanaan::join('users', 'pendanaan.user_id', '=', 'users.id')
+            ->select('pendanaan.*', 'users.name')
+            ->where('pendanaan.user_id', $user_id) // Filter berdasarkan user_id
+            ->orderBy('pendanaan.periode', 'asc')
             ->get();
 
-        if ($pendanaan->isEmpty()) {
-            return response()->json(['message' => 'No funding data found for the specified user ID'], 404);
+        foreach ($pendanaan as $item) {
+            // Menghitung total anggaran terpakai berdasarkan user_id dan periode yang sama
+            $totalAnggaranTerpakai = Kegiatan::where('user_id', $item->user_id)
+                ->where('periode', $item->periode)
+                ->sum('dana_cair');
+
+            // Mendapatkan anggaran tersedia dari pendanaan
+            $anggaranTersedia = $item->anggaran_tersedia;
+
+            // Menghitung sisa anggaran
+            $item->total_anggaran_terpakai = $totalAnggaranTerpakai;
+            $item->sisa_anggaran = $anggaranTersedia - $totalAnggaranTerpakai;
         }
 
         return response()->json($pendanaan, 200);
