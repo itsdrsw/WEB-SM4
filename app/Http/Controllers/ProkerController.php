@@ -47,7 +47,7 @@ class ProkerController extends Controller
             $fileName = $file->getClientOriginalName(); // Menggunakan nama asli file
 
             // Menyimpan file ke folder public/sertifikat
-            $lampiranPath = $file->storeAs('lampiranproker', $fileName, 'public');
+            $lampiranPath = $file->storeAs('lampiran-proker', $fileName, 'public');
 
             // Hapus file lama jika ada
             if ($proker->lampiran_proker) {
