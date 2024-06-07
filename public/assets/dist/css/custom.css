@@ -1,0 +1,5 @@
+.sidebar-dark-success .nav-sidebar > .nav-item > .nav-link.active,
+.sidebar-light-success .nav-sidebar > .nav-item > .nav-link.active {
+  background-color: #5F7C5D;
+  color: #fff;
+}

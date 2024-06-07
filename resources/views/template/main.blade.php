@@ -20,6 +20,7 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="/assets/dist/css/adminlte.css">
     <link rel="stylesheet" href="/assets/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="/assets/dist/css/custom.css">
     {{-- icon --}}
     <link rel="icon" href="/assets/dist/img/BEMLogo.png" type="image/png">
 </head>
