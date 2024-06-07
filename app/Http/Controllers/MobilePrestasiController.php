@@ -68,8 +68,14 @@ class MobilePrestasiController extends Controller
             'sertifikat' => 'image|mimes:jpg,jpeg,png|max:2048',
             'dokumentasi' => 'image|mimes:jpg,jpeg,png|max:2048',
         ]);
-
         $prestasi = Prestasi::findOrFail($idprestasi);
+
+        // Periksa apakah statusprestasi sebelumnya adalah 'ditolak'
+        if ($prestasi->statusprestasi === 'ditolak') {
+            // Jika ya, atur statusprestasi kembali menjadi 'belum disetujui'
+            $prestasi->statusprestasi = 'belum disetujui';
+        }
+
         $prestasi->user_id = $validatedData['user_id'];
         $prestasi->namalomba = $validatedData['namalomba'];
         $prestasi->kategorilomba = $validatedData['kategorilomba'];
@@ -77,7 +83,6 @@ class MobilePrestasiController extends Controller
         $prestasi->juara = $validatedData['juara'];
         $prestasi->penyelenggara = $validatedData['penyelenggara'];
         $prestasi->lingkup = $validatedData['lingkup'];
-        $prestasi->statusprestasi = $request->input('statusprestasi', 'belum disetujui');
 
         if ($request->hasFile('sertifikat')) {
             Storage::disk('public')->delete($prestasi->sertifikat);
