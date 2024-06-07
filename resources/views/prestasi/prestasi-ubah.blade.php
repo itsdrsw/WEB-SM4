@@ -69,10 +69,10 @@
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label for="category">Alasan Ditolak
-                                                <i style="color: red; font-size:10pt">*Silahkan sertakan alasan Anda jika data prestasi tidak valid. Kosongi jika telah valid.</i>
                                             </label>
                                             <textarea name="note" class="form-control @error('note') is-invalid @enderror"id="kategorilomba"
-                                                placeholder="Masukkan Alasan Anda" rows="4s">{{ old('note', $prestasi_ubah->notei) }}</textarea>
+                                                placeholder="Masukkan Alasan Anda..." rows="4s">{{ old('note', $prestasi_ubah->notei) }}</textarea>
+                                                <i style="color: red; font-size:11pt">*Silahkan sertakan alasan Anda jika data prestasi tidak valid. Kosongi jika telah valid.</i>
                                             @error('note')
                                                 <span class="invalid-feedback text-danger">{{ $message }}</span>
                                             @enderror

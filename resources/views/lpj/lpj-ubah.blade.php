@@ -36,8 +36,8 @@
                                 </a>
                             </div>
                         </div>
-                        <form class="needs-validation" novalidate action="/lpj/{{ $lpj_ubah->idlpj }}"
-                            method="POST" enctype="multipart/form-data">
+                        <form class="needs-validation" novalidate action="/lpj/{{ $lpj_ubah->idlpj }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="card-body">
@@ -47,8 +47,8 @@
                                             <label for="name">Nama Ormawa</label>
                                             <input type="text" name="name"
                                                 class="form-control @error('name') is-invalid @enderror" id="name"
-                                                placeholder="Name User" value="{{ old('name', $lpj_ubah->progamKerja->user->name) }}"
-                                                readonly>
+                                                placeholder="Name User"
+                                                value="{{ old('name', $lpj_ubah->progamKerja->user->name) }}" readonly>
                                             @error('name')
                                                 <span class="invalid-feedback text-danger">{{ $message }}</span>
                                             @enderror
@@ -71,10 +71,14 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label for="name">File LPJ</label>
+                                            <label for="name">File LPJ
+                                            </label>
                                             <input type="file" name="file_lpj"
-                                                class="form-control @error('file_lpj') is-invalid @enderror"
-                                                id="file_lpj" placeholder="File" accept="application/pdf">
+                                                class="form-control @error('file_lpj') is-invalid @enderror" id="file_lpj"
+                                                placeholder="File" accept="application/pdf">
+                                            <i style="color: orangered; font-size: 11pt; text-align: center"> Silahkan unggah file
+                                                LPJ revisi jika masih ada data
+                                                yang perlu direvisi.*</i>
                                             @error('file_lpj')
                                                 <span class="invalid-feedback text-danger">{{ $message }}</span>
                                             @enderror
@@ -85,8 +89,8 @@
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             {{-- <label for="statusproker">Status Progam Kerja</label> --}}
-                                            <select type="hidden" style="display: none" class="custom-select" id="statusproker"
-                                                name="status_proker">
+                                            <select type="hidden" style="display: none" class="custom-select"
+                                                id="statusproker" name="status_proker">
                                                 <option value="disetujui"
                                                     {{ $lpj_ubah->status_proker == 'disetujui' ? 'selected' : '' }}>
                                                     Disetujui
