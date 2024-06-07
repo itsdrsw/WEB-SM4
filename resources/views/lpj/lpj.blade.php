@@ -133,7 +133,7 @@
                                                     <?php elseif ($datalpj->status_lpj == 'perbaikan revisi'): ?>
                                                     <span class="badge badge-warning">
                                                         <i class="fa-solid fa-file-pen"></i>
-                                                        Perbaikan Revisi
+                                                        Telah Direvisi
                                                     </span>
                                                     <?php elseif ($datalpj->status_lpj == 'disetujui'): ?>
                                                     <span class="badge badge-success">
@@ -146,12 +146,22 @@
                                             {{-- <td>Rp. {{ number_format($data->price, 0) }}</td> --}}
                                             {{-- <td>{{ $data->note }}</td> --}}
                                             <td>
+                                                <?php if ($datalpj->status_lpj == 'terkirim' ||
+                                                $datalpj->status_lpj == 'perbaikan revisi'): ?>
                                                 <form class="d-inline" action="/lpj/{{ $datalpj->idlpj }}/edit"
                                                     method="GET">
                                                     <button type="submit" class="btn btn-success btn-sm mr-1">
                                                         <i class="fa-solid fa-square-pen"></i> Edit
                                                     </button>
+                                                    <?php elseif ($datalpj->status_lpj == 'disetujui' ||
+                                                    $datalpj->status_lpj == 'revisi'): ?>
+                                                <form class="d-inline" action="/lpj/{{ $datalpj->idlpj }}/edit"
+                                                    method="GET">
+                                                    <button type="submit" class="btn btn-success btn-sm mr-1" disabled>
+                                                        <i class="fa-solid fa-square-pen"></i> Edit
+                                                    </button>
                                                 </form>
+                                                <?php endif; ?>
                                                 <form class="d-inline" action="/lpj/{{ $datalpj->idlpj }}" method="POST">
                                                     @csrf
                                                     @method('delete')
