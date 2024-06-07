@@ -58,4 +58,9 @@ class User extends Authenticatable
     {
         return $value ? Carbon::parse($value) : null;
     }
+
+    public function kegiatan()
+    {
+        return $this->hasMany(Kegiatan::class);
+    }
 }
