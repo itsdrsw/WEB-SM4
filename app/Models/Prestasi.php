@@ -15,5 +15,16 @@ class Prestasi extends Model
 
     protected $guarded = ['idprestasi'];
 
-    protected $fillable = ['sertifikat','dokumentasi','statusprestasi','note'];
+    protected $fillable = [
+        'namalomba',
+        'sertifikat',
+        'dokumentasi',
+        'statusprestasi',
+        'kategorilomba',
+        'tanggallomba',
+        'juara',
+        'penyelenggara',
+        'lingkup',
+        'note'
+    ];
 }

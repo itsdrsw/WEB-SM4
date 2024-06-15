@@ -17,11 +17,12 @@ class ProgamKerja extends Model
 
     protected $fillable = [
         'status_proker',
-        'nama_proker',
         'lampiran_proker',
+        'nama_proker',
         'penanggung_jawab',
         'uraian_proker',
-        'periode'
+        'periode',
+        'user_id'
     ];
 
     public function user()

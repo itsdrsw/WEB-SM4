@@ -15,5 +15,15 @@ class Kegiatan extends Model
 
     protected $guarded = ['idkegiatan'];
 
-    protected $fillable = ['status_kegiatan','proposal_kegiatan','dana_cair'];
+    protected $fillable = [
+        'status_kegiatan',
+        'proposal_kegiatan',
+        'dana_cair',
+        'nama_kegiatan',
+        'penanggung_jawab',
+        'pengajuan_dana',
+        'periode',
+        'proker_id',
+        'user_id'
+    ];
 }

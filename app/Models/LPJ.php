@@ -15,7 +15,6 @@ class LPJ extends Model
 
     protected $guarded = ['idlpj'];
 
-    // LPJ.php
     public function progamKerja()
     {
         return $this->belongsTo(ProgamKerja::class, 'proker_id', 'idproker');
