@@ -105,12 +105,14 @@ class KegiatanController extends Controller
         $sisaAnggaran = DB::table('pendanaan')
             ->join('kegiatan', 'pendanaan.user_id', '=', 'kegiatan.user_id')
             ->where('pendanaan.user_id', $kegiatan->user_id)
-            ->select(DB::raw('(pendanaan.anggaran_tersedia - SUM(kegiatan.dana_cair)) as sisa_anggaran'))
             ->groupBy('pendanaan.anggaran_tersedia')
+            ->selectRaw('pendanaan.anggaran_tersedia - COALESCE(SUM(kegiatan.dana_cair), 0) as sisa_anggaran')
             ->value('sisa_anggaran');
+        // dd($sisaAnggaran); //     Tambahkan ini untuk debug
 
         // Validasi dana_cair tidak melebihi sisa anggaran
         if ($request->dana_cair > $sisaAnggaran) {
+            // dd('Sisa Anggaran:', $sisaAnggaran, 'Dana Cair:', $request->dana_cair);
             Alert::warning('Peringatan', 'Nominal pendanaan melebihi anggaran yang tersedia !');
             return redirect()->back()->withErrors(['dana_cair' => 'Nominal kegiatan tidak boleh melebihi sisa anggaran yang tersedia.'])->withInput();
         }

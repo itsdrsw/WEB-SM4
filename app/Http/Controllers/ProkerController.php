@@ -13,7 +13,7 @@ class ProkerController extends Controller
     {
         $proker = ProgamKerja::join('users', 'progam_kerja.user_id', '=', 'users.id')
             ->select('progam_kerja.*', 'users.name')
-            ->orderBy('progam_kerja.nama_proker', 'asc')
+            ->orderBy('progam_kerja.nama_proker', 'desc')
             ->get();
 
         return view('proker.proker', compact('proker'));
