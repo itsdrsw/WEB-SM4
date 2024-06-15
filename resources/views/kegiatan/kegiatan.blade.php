@@ -188,8 +188,8 @@
                                                 $datakegiatan->status_kegiatan == 'ajuanukm'): ?>
                                                 <form class="d-inline"
                                                     action="/kegiatan/{{ $datakegiatan->idkegiatan }}/edit" method="GET">
-                                                    <button type="submit" class="btn btn-success btn-sm mr-1">
-                                                        <i class="fa-solid fa-square-pen"></i> Edit
+                                                    <button type="submit" class="btn btn-warning btn-sm mr-1">
+                                                        <i class="fa-solid fa-square-pen"></i> Konfirmasi
                                                     </button>
                                                 </form>
                                                 <?php elseif ($datakegiatan->status_kegiatan == 'revisibem'||
@@ -198,8 +198,8 @@
                                                 $datakegiatan->status_kegiatan == 'selesai'): ?>
                                                 <form class="d-inline"
                                                     action="/kegiatan/{{ $datakegiatan->idkegiatan }}/edit" method="GET">
-                                                    <button type="submit" class="btn btn-success btn-sm mr-1" disabled>
-                                                        <i class="fa-solid fa-square-pen"></i> Edit
+                                                    <button type="submit" class="btn btn-warning btn-sm mr-1" disabled>
+                                                        <i class="fa-solid fa-square-pen"></i> Konfirmasi
                                                     </button>
                                                 </form>
                                                 <?php endif; ?>

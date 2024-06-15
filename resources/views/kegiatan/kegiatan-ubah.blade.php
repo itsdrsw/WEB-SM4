@@ -109,7 +109,7 @@
                                             <input type="file" name="proposal_kegiatan"
                                                 class="form-control @error('proposal_kegiatan') is-invalid @enderror"
                                                 id="proposal_kegiatan" placeholder="File" accept="application/pdf">
-                                                <i style="color: orangered; font-size: 11pt; text-align: center"> Silahkan unggah file
+                                                <i style="color: green; font-size: 11pt; text-align: center"> Silahkan unggah file
                                                     proposal revisi jika masih ada data
                                                     yang perlu direvisi.*</i>
                                             @error('proposal_kegiatan')
@@ -136,7 +136,7 @@
                                                     value="{{ old('dana_cair', $kegiatan_ubah->dana_cair) }}">
                                             @endif
                                             @error('dana_cair')
-                                            <i style="color: red; font-size: 11pt; text-align: center">Silahkan masukkan nominal pendanaan kegiatan jika proposal kegiatan sudah valid.*</i>
+                                            <i style="color: red; font-size: 11pt; text-align: center"><b>Silahkan masukkan nominal pendanaan kegiatan jika proposal kegiatan sudah valid.*</b></i>
                                             @enderror
                                         </div>
                                     </div>

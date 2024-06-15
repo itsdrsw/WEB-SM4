@@ -65,9 +65,8 @@
                                                     <i class="fa-solid fa-eye"></i> Lihat
                                                 </button>
                                                 <!-- Modal -->
-                                                <div class="modal fade" id="gambarModal{{ $datalpj->idlpj }}"
-                                                    tabindex="-1" role="dialog" aria-labelledby="gambarModalLabel"
-                                                    aria-hidden="true">
+                                                <div class="modal fade" id="gambarModal{{ $datalpj->idlpj }}" tabindex="-1"
+                                                    role="dialog" aria-labelledby="gambarModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
@@ -150,25 +149,26 @@
                                                 $datalpj->status_lpj == 'perbaikan revisi'): ?>
                                                 <form class="d-inline" action="/lpj/{{ $datalpj->idlpj }}/edit"
                                                     method="GET">
-                                                    <button type="submit" class="btn btn-success btn-sm mr-1">
-                                                        <i class="fa-solid fa-square-pen"></i> Edit
+                                                    <button type="submit" class="btn btn-warning btn-sm mr-1">
+                                                        <i class="fa-solid fa-square-pen"></i> Konfirmasi
                                                     </button>
                                                     <?php elseif ($datalpj->status_lpj == 'disetujui' ||
                                                     $datalpj->status_lpj == 'revisi'): ?>
-                                                <form class="d-inline" action="/lpj/{{ $datalpj->idlpj }}/edit"
-                                                    method="GET">
-                                                    <button type="submit" class="btn btn-success btn-sm mr-1" disabled>
-                                                        <i class="fa-solid fa-square-pen"></i> Edit
-                                                    </button>
-                                                </form>
-                                                <?php endif; ?>
-                                                <form class="d-inline" action="/lpj/{{ $datalpj->idlpj }}" method="POST">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <button type="submit" class="btn btn-danger btn-sm" id="btn-delete"><i
-                                                            class="fa-solid fa-trash-can"></i> Delete
-                                                    </button>
-                                                </form>
+                                                    <form class="d-inline" action="/lpj/{{ $datalpj->idlpj }}/edit"
+                                                        method="GET">
+                                                        <button type="submit" class="btn btn-warning btn-sm mr-1" disabled>
+                                                            <i class="fa-solid fa-square-pen"></i> Konfirmasi
+                                                        </button>
+                                                    </form>
+                                                    <?php endif; ?>
+                                                    <form class="d-inline" action="/lpj/{{ $datalpj->idlpj }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button type="submit" class="btn btn-danger btn-sm"
+                                                            id="btn-delete"><i class="fa-solid fa-trash-can"></i> Delete
+                                                        </button>
+                                                    </form>
                                             </td>
                                         </tr>
                                     @endforeach
