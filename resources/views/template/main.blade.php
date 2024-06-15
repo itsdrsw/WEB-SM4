@@ -180,7 +180,7 @@
             <a href="/dashboard" class="brand-link">
                 <img src="/assets/dist/img/BEMLogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-1"
                     style="opacity: .8">
-                <span class="custom-font"><b>SIKMAS</b> POLIJE</span>
+                <span class="custom-font"><b> SIKMAS</b> POLIJE</span>
             </a>
 
             <!-- Sidebar -->
@@ -214,6 +214,7 @@
                         role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                             with font-awesome or any other icon font library -->
+                            @if (auth()->user()->role == 'kemahasiswaan')
                         <li class="nav-item">
                             <a href="/" class="nav-link">
                                 <i class="nav-icon fa-solid fa-gauge-high"></i>
@@ -280,7 +281,34 @@
                                 @csrf
                             </form>
                         </li>
-
+                        @elseif (auth()->user()->role == 'bem')
+                        <li class="nav-item">
+                            <a href="/" class="nav-link">
+                                <i class="nav-icon fa-solid fa-gauge-high"></i>
+                                <p>
+                                    Dashboard
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/kegiatan" class="nav-link">
+                                <i class="nav-icon fa-solid fa-calendar-check"></i>
+                                <p>
+                                    Kegiatan
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link"
+                                onclick="event.preventDefault(); document.getElementById('logging-out').submit();">
+                                <i class="nav-icon fa-solid fa-right-from-bracket"></i>
+                                <p>Keluar</p>
+                            </a>
+                            <form action="/logout" method="POST" id="logging-out" style="display: none;">
+                                @csrf
+                            </form>
+                        </li>
+                        @endif
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
