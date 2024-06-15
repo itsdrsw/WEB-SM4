@@ -214,100 +214,92 @@
                         role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                             with font-awesome or any other icon font library -->
-                            @if (auth()->user()->role == 'kemahasiswaan')
-                        <li class="nav-item">
-                            <a href="/" class="nav-link">
-                                <i class="nav-icon fa-solid fa-gauge-high"></i>
-                                <p>
-                                    Dashboard
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/prestasi" class="nav-link">
-                                <i class="nav-icon fa-solid fa-trophy"></i>
-                                <p>
-                                    Prestasi
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/proker" class="nav-link">
-                                <i class="nav-icon fa-solid fa-book-open"></i>
-                                <p>
-                                    Program Kerja
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/kegiatan" class="nav-link">
-                                <i class="nav-icon fa-solid fa-calendar-check"></i>
-                                <p>
-                                    Kegiatan
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/pendanaan" class="nav-link">
-                                <i class="nav-icon fa-solid fa-file-invoice-dollar"></i>
-                                <p>
-                                    Pendanaan
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/lpj" class="nav-link">
-                                <i class="nav-icon fa-solid fa-file-circle-check"></i>
-                                <p>
-                                    LPJ
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/profil" class="nav-link">
-                                <i class="nav-icon fa-solid fa-user-tie"></i>
-                                <p>
-                                    Data Akun
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link"
-                                onclick="event.preventDefault(); document.getElementById('logging-out').submit();">
-                                <i class="nav-icon fa-solid fa-right-from-bracket"></i>
-                                <p>Keluar</p>
-                            </a>
-                            <form action="/logout" method="POST" id="logging-out" style="display: none;">
-                                @csrf
-                            </form>
-                        </li>
+                        @if (auth()->user()->role == 'kemahasiswaan')
+                            <li class="nav-item">
+                                <a href="/" class="nav-link">
+                                    <i class="nav-icon fa-solid fa-gauge-high"></i>
+                                    <p>
+                                        Dashboard
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/prestasi" class="nav-link">
+                                    <i class="nav-icon fa-solid fa-trophy"></i>
+                                    <p>
+                                        Prestasi
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/proker" class="nav-link">
+                                    <i class="nav-icon fa-solid fa-book-open"></i>
+                                    <p>
+                                        Program Kerja
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/kegiatan" class="nav-link">
+                                    <i class="nav-icon fa-solid fa-calendar-check"></i>
+                                    <p>
+                                        Kegiatan
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/pendanaan" class="nav-link">
+                                    <i class="nav-icon fa-solid fa-file-invoice-dollar"></i>
+                                    <p>
+                                        Pendanaan
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/lpj" class="nav-link">
+                                    <i class="nav-icon fa-solid fa-file-circle-check"></i>
+                                    <p>
+                                        LPJ
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/profil" class="nav-link">
+                                    <i class="nav-icon fa-solid fa-user-tie"></i>
+                                    <p>
+                                        Data Akun
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('logout') }}" class="nav-link"
+                                    onclick="event.preventDefault(); confirmLogout();">
+                                    <i class="nav-icon fa-solid fa-right-from-bracket"></i> Keluar
+                                </a>
+                            </li>
                         @elseif (auth()->user()->role == 'bem')
-                        <li class="nav-item">
-                            <a href="/" class="nav-link">
-                                <i class="nav-icon fa-solid fa-gauge-high"></i>
-                                <p>
-                                    Dashboard
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/kegiatan" class="nav-link">
-                                <i class="nav-icon fa-solid fa-calendar-check"></i>
-                                <p>
-                                    Kegiatan
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link"
-                                onclick="event.preventDefault(); document.getElementById('logging-out').submit();">
-                                <i class="nav-icon fa-solid fa-right-from-bracket"></i>
-                                <p>Keluar</p>
-                            </a>
-                            <form action="/logout" method="POST" id="logging-out" style="display: none;">
-                                @csrf
-                            </form>
-                        </li>
+                            <li class="nav-item">
+                                <a href="/" class="nav-link">
+                                    <i class="nav-icon fa-solid fa-gauge-high"></i>
+                                    <p>
+                                        Dashboard
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/kegiatan" class="nav-link">
+                                    <i class="nav-icon fa-solid fa-calendar-check"></i>
+                                    <p>
+                                        Kegiatan
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('logout') }}" class="nav-link"
+                                    onclick="event.preventDefault(); confirmLogout();">
+                                    <i class="nav-icon fa-solid fa-right-from-bracket"></i> Keluar
+                                </a>
+                            </li>
                         @endif
                     </ul>
                 </nav>
@@ -432,23 +424,27 @@
     </script>
 
     <script>
-        $(".log-out").on('click', function(e) {
-            e.preventDefault();
+        function confirmLogout() {
             Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
+                title: 'Konfirmasi',
+                text: "Apakah Anda yakin ingin keluar?",
+                icon: 'question',
                 showCancelButton: true,
-                confirmButtonColor: '#7367f0',
-                cancelButtonColor: '#82868b',
-                confirmButtonText: 'Yes, Log Out !'
+                confirmButtonColor: '#5F7C5D',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Tidak'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    $('#logging-out').submit()
+                    document.getElementById('logout-form').submit();
                 }
             })
-        });
+        }
     </script>
+
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        @csrf
+    </form>
 
 </body>
 
