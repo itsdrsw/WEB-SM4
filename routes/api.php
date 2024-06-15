@@ -4,7 +4,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\LoginMobileController;
 use App\Http\Controllers\LPJController;
 use App\Http\Controllers\MobileDashboardController;
+use App\Http\Controllers\MobileKegiatanController;
 use App\Http\Controllers\MobileLoginController;
+use App\Http\Controllers\MobileLPJController;
 use App\Http\Controllers\MobilePendanaanController;
 use App\Http\Controllers\MobilePrestasiController;
 use App\Http\Controllers\MobileProkerController;
@@ -52,5 +54,11 @@ Route::get('dashboard/counts', [MobileDashboardController::class, 'getCounts']);
 
 Route::get('/pendanaan', [MobilePendanaanController::class, 'index']);
 
-Route::get('lpj/{user_id}', [LPJController::class, 'getlpj']);
+Route::get('lpj/{user_id}', [MobileLPJController::class, 'getlpj']);
+Route::post('/lpj', [MobileLPJController::class, 'store']);
+Route::post('lpj/{id}', [MobileLPJController::class, 'updateLampiranPJ']);
 
+Route::get('kegiatan/{user_id}', [MobileKegiatanController::class, 'getKegiatan']);
+Route::post('/kegiatan', [MobileKegiatanController::class, 'store']);
+Route::post('kegiatan/{id}', [MobileKegiatanController::class, 'updateProposalKegiatan']);
+Route::post('updatestatus/{id}', [MobileKegiatanController::class, 'updateStatusKegiatan']);
