@@ -23,38 +23,42 @@ class MobileProkerController extends Controller
 
     public function store(Request $request)
     {
-        // Validasi data yang diterima dari request
         $validatedData = $request->validate([
             'user_id' => 'required|integer|exists:users,id',
-            'nama_proker' => 'required|string|max:255',
-            'penanggung_jawab' => 'required|string|max:255',
-            'uraian_proker' => 'required|string',
-            'periode' => 'required|string|max:50',
-            'lampiran_proker' => 'required|file|mimes:pdf|max:2048',
+            'nama_proker' => 'required|string|max:50',
+            'penanggung_jawab' => 'required|string|max:50',
+            'uraian_proker' => 'required|string|max:150',
+            'periode' => 'required|integer',
+            'lampiran_proker' => 'required|file|mimes:pdf|max:2048', // Validasi untuk file PDF
         ]);
 
-        // Menyimpan file lampiran proker
-        $lampiranPath = $request->file('lampiran_proker')->store('lampiranproker', 'public');
+        try {
+            $user_id = $validatedData['user_id'];
 
-        // Membuat objek programkerja baru
-        $programkerja = new ProgamKerja();
-        $programkerja->user_id = $validatedData['user_id'];
-        $programkerja->nama_proker = $validatedData['nama_proker'];
-        $programkerja->penanggung_jawab = $validatedData['penanggung_jawab'];
-        $programkerja->uraian_proker = $validatedData['uraian_proker'];
-        $programkerja->periode = $validatedData['periode'];
-        $programkerja->lampiran_proker = $lampiranPath;
-        $programkerja->status_proker = $request->input('status_proker', 'terkirim');
-        $programkerja->save();
+            // Menyimpan file lampiran jika ada
+            $lampiranProkerPath = null;
+            if ($request->hasFile('lampiran_proker')) {
+                $lampiranProkerPath = $request->file('lampiran_proker')->store('lampiran', 'public');
+            }
 
-        // Mengembalikan respon JSON
-        return response()->json(['success' => true, 'message' => 'Data program kerja berhasil disimpan']);
+            $proker = ProgamKerja::create([
+                'user_id' => $user_id,
+                'nama_proker' => $validatedData['nama_proker'],
+                'penanggung_jawab' => $validatedData['penanggung_jawab'],
+                'uraian_proker' => $validatedData['uraian_proker'],
+                'periode' => $validatedData['periode'],
+                'lampiran_proker' => $lampiranProkerPath,
+            ]);
+
+            return response()->json(['success' => true, 'message' => 'Data proker berhasil disimpan']);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
+        }
     }
-
     public function updateLampiranProker(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'lampiran_proker' => 'required|file|mimes:pdf|max:2048', // Validasi untuk file PDF
+            'lampiran_proker' => 'required|file|mimes:pdf|max:2048',
         ]);
 
         try {
@@ -65,13 +69,19 @@ class MobileProkerController extends Controller
                 Storage::disk('public')->delete($proker->lampiran_proker);
             }
 
+            // Menentukan status_proker baru berdasarkan kondisi
+            if ($proker->status_proker == 'revisi') {
+                $proker->status_proker = 'perbaikanrevisi';
+            } else if ($proker->status_proker == 'terkirim') {
+                $proker->status_proker = 'terkirim';
+            }
+
             // Menyimpan file lampiran baru
             $lampiranProkerPath = $request->file('lampiran_proker')->store('lampiran', 'public');
 
             // Update lampiran_proker di database
             $proker->update([
                 'lampiran_proker' => $lampiranProkerPath,
-                'status_proker' => 'perbaikanrevisi',
             ]);
 
             return response()->json(['success' => true, 'message' => 'Lampiran proker berhasil diperbarui']);
