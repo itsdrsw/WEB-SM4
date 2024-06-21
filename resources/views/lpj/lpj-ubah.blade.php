@@ -36,7 +36,7 @@
                                 </a>
                             </div>
                         </div>
-                        <form class="needs-validation" novalidate action="/lpj/{{ $lpj_ubah->idlpj }}" method="POST"
+                        <form class="needs-validation" novalidate id="submit-form-{{ $lpj_ubah->idlpj }}" action="/lpj/{{ $lpj_ubah->idlpj }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
@@ -76,7 +76,8 @@
                                             <input type="file" name="file_lpj"
                                                 class="form-control @error('file_lpj') is-invalid @enderror" id="file_lpj"
                                                 placeholder="File" accept="application/pdf">
-                                            <i style="color: orangered; font-size: 11pt; text-align: center"> Silahkan unggah file
+                                            <i style="color: orangered; font-size: 11pt; text-align: center"> Silahkan
+                                                unggah file
                                                 LPJ revisi jika masih ada data
                                                 yang perlu direvisi.*</i>
                                             @error('file_lpj')
@@ -111,7 +112,9 @@
                     <div class="card-footer text-right">
                         <button class="btn btn-dark mr-1" type="reset"><i class="fa-solid fa-arrows-rotate"></i>
                             Reset</button>
-                        <button class="btn btn-success" type="submit"><i class="fa-solid fa-floppy-disk"></i>
+                        <button class="btn btn-success" type="button"
+                            onclick="confirmSave('{{ $lpj_ubah->idlpj }}')">
+                            <i class="fa-solid fa-floppy-disk"></i>
                             Save</button>
                     </div>
                     </form>
@@ -120,5 +123,23 @@
             <!-- /.content -->
         </div>
     </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function confirmSave(id) {
+            Swal.fire({
+                title: 'Konfirmasi',
+                text: "Apakah Anda yakin, data yang akan diubah sudah benar?",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#5F7C5D',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, simpan!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('submit-form-' + id).submit();
+                }
+            })
+        }
+    </script>
 @endsection

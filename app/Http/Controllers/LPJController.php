@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\LPJ;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -103,5 +104,20 @@ class LPJController extends Controller
             ->get();
 
         return response()->json($lpj);
+    }
+
+    public function destroy($id_LPJ)
+    {
+        try {
+            $deleteLPJ = LPJ::findOrFail($id_LPJ);
+
+            $deleteLPJ->delete();
+
+            Alert::info('Success', 'Data LPJ berhasil dihapus !');
+            return redirect('/lpj');
+        } catch (Exception $ex) {
+            Alert::warning('Error', 'Data LPJ gagal dihapus !');
+            return redirect('/lpj');
+        }
     }
 }

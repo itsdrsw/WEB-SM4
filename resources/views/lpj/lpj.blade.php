@@ -152,23 +152,25 @@
                                                     <button type="submit" class="btn btn-warning btn-sm mr-1">
                                                         <i class="fa-solid fa-square-pen"></i> Konfirmasi
                                                     </button>
-                                                    <?php elseif ($datalpj->status_lpj == 'disetujui' ||
+                                                </form>
+                                                <?php elseif ($datalpj->status_lpj == 'disetujui' ||
                                                     $datalpj->status_lpj == 'revisi'): ?>
-                                                    <form class="d-inline" action="/lpj/{{ $datalpj->idlpj }}/edit"
-                                                        method="GET">
-                                                        <button type="submit" class="btn btn-warning btn-sm mr-1" disabled>
-                                                            <i class="fa-solid fa-square-pen"></i> Konfirmasi
-                                                        </button>
-                                                    </form>
-                                                    <?php endif; ?>
-                                                    <form class="d-inline" action="/lpj/{{ $datalpj->idlpj }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('delete')
-                                                        <button type="submit" class="btn btn-danger btn-sm"
-                                                            id="btn-delete"><i class="fa-solid fa-trash-can"></i> Delete
-                                                        </button>
-                                                    </form>
+                                                <form class="d-inline" action="/lpj/{{ $datalpj->idlpj }}/edit"
+                                                    method="GET">
+                                                    <button type="submit" class="btn btn-warning btn-sm mr-1" disabled>
+                                                        <i class="fa-solid fa-square-pen"></i> Konfirmasi
+                                                    </button>
+                                                </form>
+                                                <?php endif; ?>
+                                                <form id="delete-form-{{ $datalpj->idlpj }}" class="d-inline"
+                                                    action="/lpj/{{ $datalpj->idlpj }}" method="POST">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button type="button" class="btn btn-danger btn-sm"
+                                                        onclick="confirmDelete({{ $datalpj->idlpj }})">
+                                                        <i class="fa-solid fa-trash-can"></i> Hapus
+                                                    </button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -184,4 +186,23 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function confirmDelete(id) {
+            Swal.fire({
+                title: 'Konfirmasi',
+                text: "Apakah Anda yakin, data ini akan dihapus secara permanen?",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#5F7C5D',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('delete-form-' + id).submit();
+                }
+            })
+        }
+    </script>
 @endsection
