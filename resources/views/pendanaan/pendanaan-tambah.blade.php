@@ -36,8 +36,8 @@
                                 </a>
                             </div>
                         </div>
-                        <form class="needs-validation" novalidate action="{{ route('pendanaan.tambah') }}" method="POST"
-                            enctype="multipart/form-data">
+                        <form class="needs-validation" novalidate id="submit-form" action="{{ route('pendanaan.tambah') }}"
+                            method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
                                 <div class="row">
@@ -89,10 +89,12 @@
                             </div>
                     </div>
                     <div class="card-footer text-right">
-                        <button class="btn btn-dark mr-1" type="reset"><i class="fa-solid fa-arrows-rotate"></i>
-                            Reset</button>
-                        <button class="btn btn-success" type="submit"><i class="fa-solid fa-floppy-disk"></i>
-                            Save</button>
+                        <button class="btn btn-dark mr-1" type="reset">
+                            <i class="fa-solid fa-arrows-rotate"></i> Reset
+                        </button>
+                        <button class="btn btn-success" type="button" onclick="confirmSave()">
+                            <i class="fa-solid fa-floppy-disk"></i> Save
+                        </button>
                     </div>
                     </form>
                 </div>
@@ -101,4 +103,23 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function confirmSave() {
+            Swal.fire({
+                title: 'Konfirmasi',
+                text: "Apakah Anda yakin, data yang akan ditambahkan sudah benar?",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#5F7C5D',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, simpan!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('submit-form').submit();
+                }
+            })
+        }
+    </script>
 @endsection
