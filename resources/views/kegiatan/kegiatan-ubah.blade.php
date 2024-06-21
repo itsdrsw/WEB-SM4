@@ -36,8 +36,9 @@
                                 </a>
                             </div>
                         </div>
-                        <form class="needs-validation" novalidate action="/kegiatan/{{ $kegiatan_ubah->idkegiatan }}"
-                            method="POST" enctype="multipart/form-data">
+                        <form class="needs-validation" novalidate id="submit-form-{{ $kegiatan_ubah->idkegiatan }}"
+                            action="/kegiatan/{{ $kegiatan_ubah->idkegiatan }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="card-body">
@@ -72,7 +73,8 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             {{-- <label for="status_kegiatan">Status Kegiatan</label> --}}
-                                            <select type="hidden" style="display: none" class="custom-select" id="status_kegiatan" name="status_kegiatan">
+                                            <select type="hidden" style="display: none" class="custom-select"
+                                                id="status_kegiatan" name="status_kegiatan">
                                                 @if (Auth::user()->role == 'bem')
                                                     <option value="revisiukmbem"
                                                         {{ $kegiatan_ubah->status_kegiatan == 'revisiukmbem' ? 'selected' : '' }}>
@@ -109,9 +111,10 @@
                                             <input type="file" name="proposal_kegiatan"
                                                 class="form-control @error('proposal_kegiatan') is-invalid @enderror"
                                                 id="proposal_kegiatan" placeholder="File" accept="application/pdf">
-                                                <i style="color: green; font-size: 11pt; text-align: center"> Silahkan unggah file
-                                                    proposal revisi jika masih ada data
-                                                    yang perlu direvisi.*</i>
+                                            <i style="color: green; font-size: 11pt; text-align: center"> Silahkan unggah
+                                                file
+                                                proposal revisi jika masih ada data
+                                                yang perlu direvisi.*</i>
                                             @error('proposal_kegiatan')
                                                 <span class="invalid-feedback text-danger">
                                                 </span>
@@ -123,20 +126,21 @@
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             @if (Auth::user()->role == 'bem')
-                                            <label hidden for="name">Dana Disetujui</label>
+                                                <label hidden for="name">Dana Disetujui</label>
                                                 <input type="hidden" name="dana_cair"
                                                     class="form-control @error('dana_cair') is-invalid @enderror"
                                                     id="name" placeholder="Masukkan nominal dana"
                                                     value="{{ old('dana_cair', $kegiatan_ubah->dana_cair) }}">
                                             @elseif(Auth::user()->role == 'kemahasiswaan')
-                                            <label for="name">Dana Disetujui</label>
+                                                <label for="name">Dana Disetujui</label>
                                                 <input type="number" name="dana_cair"
                                                     class="form-control @error('dana_cair') is-invalid @enderror"
                                                     id="name" placeholder="Masukkan nominal dana"
                                                     value="{{ old('dana_cair', $kegiatan_ubah->dana_cair) }}">
                                             @endif
                                             @error('dana_cair')
-                                            <i style="color: red; font-size: 11pt; text-align: center"><b>Silahkan masukkan nominal pendanaan kegiatan jika proposal kegiatan sudah valid.*</b></i>
+                                                <i style="color: red; font-size: 11pt; text-align: center"><b>Silahkan masukkan
+                                                        nominal pendanaan kegiatan jika proposal kegiatan sudah valid.*</b></i>
                                             @enderror
                                         </div>
                                     </div>
@@ -146,7 +150,9 @@
                     <div class="card-footer text-right">
                         <button class="btn btn-dark mr-1" type="reset"><i class="fa-solid fa-arrows-rotate"></i>
                             Reset</button>
-                        <button class="btn btn-success" type="submit"><i class="fa-solid fa-floppy-disk"></i>
+                        <button class="btn btn-success" type="button"
+                            onclick="confirmSave('{{ $kegiatan_ubah->idkegiatan }}')">
+                            <i class="fa-solid fa-floppy-disk"></i>
                             Save</button>
                     </div>
                     </form>
@@ -156,4 +162,22 @@
         </div>
     </div>
 
+    <script>
+        function confirmSave(id) {
+            Swal.fire({
+                title: 'Konfirmasi',
+                text: "Apakah Anda yakin, data yang akan diubah sudah benar?",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#5F7C5D',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, simpan!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('submit-form-' + id).submit();
+                }
+            })
+        }
+    </script>
 @endsection

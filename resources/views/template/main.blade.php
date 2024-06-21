@@ -191,7 +191,14 @@
                         <img src="/assets/dist/img/logodoni.png" class="img-circle elevation-1" alt="User Image">
                     </div>
                     <div class="info custom-font">
-                        <a href="#" class="d-block">{{ auth()->user()->role }}</a>
+                        <a href="#" class="d-block">
+                            @if (auth()->user()->role == 'kemahasiswaan')
+                                Kemahasiswaan
+                            @elseif(auth()->user()->role == 'bem')
+                                Bem Koordinator
+                            @endif
+
+                        </a>
                     </div>
                 </div>
 

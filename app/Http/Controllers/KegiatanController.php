@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kegiatan;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -122,5 +123,20 @@ class KegiatanController extends Controller
 
         Alert::info('Success', 'Data Kegiatan berhasil disimpan !');
         return redirect('/kegiatan');
+    }
+
+    public function destroy($id_kegiatan)
+    {
+        try {
+            $deleteduser = Kegiatan::findOrFail($id_kegiatan);
+
+            $deleteduser->delete();
+
+            Alert::info('Success', 'Data kegiatan berhasil dihapus !');
+            return redirect('/kegiatan');
+        } catch (Exception $ex) {
+            Alert::warning('Error', 'Data kegiatan gagal dihapus !');
+            return redirect('/kegiatan');
+        }
     }
 }
