@@ -99,12 +99,19 @@ class ProfilController extends Controller
         try {
             $deleteduser = User::findOrFail($id_user);
 
+            // Check the role of the user to be deleted
+            if ($deleteduser->role == 'kemahasiswaan' || $deleteduser->role == 'bem') {
+                Alert::warning('Peringatan', 'Data user ini tidak dapat dihapus');
+                return redirect('/profil');
+            }
+
+            // Proceed with deletion if the role is not 'kemahasiswaan' or 'bem'
             $deleteduser->delete();
 
-            Alert::error('Success', 'Data user berhasil dihapus !');
+            Alert::success('Success', 'Data user berhasil dihapus!');
             return redirect('/profil');
         } catch (Exception $ex) {
-            Alert::warning('Error', 'Data user gagal dihapus !');
+            Alert::warning('Error', 'Data user gagal dihapus!');
             return redirect('/profil');
         }
     }

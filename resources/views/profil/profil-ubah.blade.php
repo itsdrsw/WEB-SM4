@@ -29,12 +29,13 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="text-right">
-                                <a href="/profil" class="btn btn-warning btn-sm"><i class="fa-solid fa-arrow-rotate-left"></i>
+                                <a href="/profil" class="btn btn-warning btn-sm"><i
+                                        class="fa-solid fa-arrow-rotate-left"></i>
                                     Back
                                 </a>
                             </div>
                         </div>
-                        <form class="needs-validation" novalidate action="/profil/{{ $user->id }}" method="POST">
+                        <form class="needs-validation" novalidate id="submit-form-{{ $user->id }}" action="/profil/{{ $user->id }}" method="POST">
                             @csrf
                             @method('PUT')
                             <div class="card-body">
@@ -42,29 +43,37 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="name">KM/Instansi</label>
-                                            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Name User" value="{{old('name', $user->name)}}" readonly>
+                                            <input type="text" name="name"
+                                                class="form-control @error('name') is-invalid @enderror" id="name"
+                                                placeholder="Name User" value="{{ old('name', $user->name) }}" readonly>
                                             @error('name')
-                                            <span class="invalid-feedback text-danger">{{ $message }}</span>
+                                                <span class="invalid-feedback text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="category">Nama Lengkap</label>
-                                            <input type="text" name="ketua" class="form-control @error('ketua') is-invalid @enderror" id="ketua" placeholder="Masukkan Nama Lengkap" value="{{old('ketua', $user->ketua)}}" required>
+                                            <input type="text" name="ketua"
+                                                class="form-control @error('ketua') is-invalid @enderror" id="ketua"
+                                                placeholder="Masukkan Nama Lengkap" value="{{ old('ketua', $user->ketua) }}"
+                                                required>
                                             @error('ketua')
-                                            <span class="invalid-feedback text-danger">{{ $message }}</span>
+                                                <span class="invalid-feedback text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-12">
                                         <div class="form-group">
                                             <label for="supplier">Email</label>
-                                            <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="Masukkan Email" value="{{old('email', $user->email)}}" required>
+                                            <input type="text" name="email"
+                                                class="form-control @error('email') is-invalid @enderror" id="email"
+                                                placeholder="Masukkan Email" value="{{ old('email', $user->email) }}"
+                                                required>
                                             @error('email')
-                                            <span class="invalid-feedback text-danger">{{ $message }}</span>
+                                                <span class="invalid-feedback text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
@@ -78,31 +87,12 @@
                                         </div>
                                     </div> --}}
                                 </div>
-                                {{-- <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label for="price">Price</label>
-                                            <input type="number" name="price" class="form-control @error('price') is-invalid @enderror" id="price" placeholder="Price" value="{{old('price', $barang->price)}}" required>
-                                            @error('price')
-                                            <span class="invalid-feedback text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label for="note">Note</label>
-                                            <textarea name="note" id="note" class="form-control @error('note') is-invalid @enderror" cols="10" rows="5" placeholder="note">{{old('note', $barang->note)}}</textarea>
-                                            @error('note')
-                                            <span class="invalid-feedback text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div> --}}
                             </div>
                             <div class="card-footer text-right">
                                 <button class="btn btn-dark mr-1" type="reset"><i class="fa-solid fa-arrows-rotate"></i>
                                     Reset</button>
-                                <button class="btn btn-success" type="submit"><i class="fa-solid fa-floppy-disk"></i>
+                                <button class="btn btn-success" type="button" onclick="confirmSave('{{ $user->id }}')">
+                                    <i class="fa-solid fa-floppy-disk"></i>
                                     Save</button>
                             </div>
                         </form>
@@ -113,4 +103,23 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function confirmSave(id) {
+            Swal.fire({
+                title: 'Konfirmasi',
+                text: "Apakah Anda yakin, data yang akan diubah sudah benar?",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#5F7C5D',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, simpan!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('submit-form-' + id).submit();
+                }
+            })
+        }
+    </script>
 @endsection
