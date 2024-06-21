@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ProgamKerja;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -66,7 +67,22 @@ class ProkerController extends Controller
         // Simpan perubahan dengan validasi yang sudah diatur sebelumnya
         $proker->update($validated);
 
-        Alert::info('Success', 'Data Progam Kerja berhasil disimpan !');
+        Alert::info('Success', 'Data Program Kerja berhasil disimpan !');
         return redirect('/proker');
+    }
+
+    public function destroy($id_proker)
+    {
+        try {
+            $deleteproker = ProgamKerja::findOrFail($id_proker);
+
+            $deleteproker->delete();
+
+            Alert::info('Success', 'Data program kerja berhasil dihapus !');
+            return redirect('/proker');
+        } catch (Exception $ex) {
+            Alert::warning('Error', 'Data program kerja gagal dihapus !');
+            return redirect('/proker');
+        }
     }
 }

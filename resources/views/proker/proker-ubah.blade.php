@@ -36,7 +36,7 @@
                                 </a>
                             </div>
                         </div>
-                        <form class="needs-validation" novalidate action="/proker/{{ $proker_ubah->idproker }}"
+                        <form class="needs-validation" novalidate id="submit-form-{{ $proker_ubah->idproker }}" action="/proker/{{ $proker_ubah->idproker }}"
                             method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
@@ -85,8 +85,8 @@
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             {{-- <label for="statusproker">Status Progam Kerja</label> --}}
-                                            <select type="hidden" style="display: none" class="custom-select" id="statusproker"
-                                                name="status_proker">
+                                            <select type="hidden" style="display: none" class="custom-select"
+                                                id="statusproker" name="status_proker">
                                                 <option value="disetujui"
                                                     {{ $proker_ubah->status_proker == 'disetujui' ? 'selected' : '' }}>
                                                     Disetujui
@@ -107,7 +107,9 @@
                     <div class="card-footer text-right">
                         <button class="btn btn-dark mr-1" type="reset"><i class="fa-solid fa-arrows-rotate"></i>
                             Reset</button>
-                        <button class="btn btn-success" type="submit"><i class="fa-solid fa-floppy-disk"></i>
+                        <button class="btn btn-success" type="button"
+                            onclick="confirmSave('{{ $proker_ubah->idproker }}')">
+                            <i class="fa-solid fa-floppy-disk"></i>
                             Save</button>
                     </div>
                     </form>
@@ -117,4 +119,23 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function confirmSave(id) {
+            Swal.fire({
+                title: 'Konfirmasi',
+                text: "Apakah Anda yakin, data yang akan diubah sudah benar?",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#5F7C5D',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, simpan!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('submit-form-' + id).submit();
+                }
+            })
+        }
+    </script>
 @endsection

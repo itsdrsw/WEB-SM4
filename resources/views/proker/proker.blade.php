@@ -162,12 +162,13 @@
                                                     </button>
                                                 </form>
                                                 <?php endif; ?>
-                                                <form class="d-inline" action="/proker/{{ $dataproker->id_user }}"
-                                                    method="POST">
+                                                <form id="delete-form-{{ $dataproker->idproker }}" class="d-inline"
+                                                    action="/proker/{{ $dataproker->idproker }}" method="POST">
                                                     @csrf
                                                     @method('delete')
-                                                    <button type="submit" class="btn btn-danger btn-sm" id="btn-delete"><i
-                                                            class="fa-solid fa-trash-can"></i> Delete
+                                                    <button type="button" class="btn btn-danger btn-sm"
+                                                        onclick="confirmDelete({{ $dataproker->idproker }})">
+                                                        <i class="fa-solid fa-trash-can"></i> Hapus
                                                     </button>
                                                 </form>
                                             </td>
@@ -185,4 +186,23 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function confirmDelete(id) {
+            Swal.fire({
+                title: 'Konfirmasi',
+                text: "Apakah Anda yakin, data ini akan dihapus secara permanen?",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#5F7C5D',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('delete-form-' + id).submit();
+                }
+            })
+        }
+    </script>
 @endsection

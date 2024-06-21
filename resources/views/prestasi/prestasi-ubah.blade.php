@@ -81,30 +81,6 @@
 
                                     </div>
                                 </div>
-                                {{-- <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label for="name">File Sertifikat</label>
-                                            <input type="file" name="sertifikat"
-                                                class="form-control @error('sertifikat') is-invalid @enderror"
-                                                id="sertifikat" placeholder="File">
-                                            @error('sertifikat')
-                                                <span class="invalid-feedback text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label for="name">File Dokumentasi</label>
-                                            <input type="file" name="dokumentasi"
-                                                class="form-control @error('dokumentasi') is-invalid @enderror"
-                                                id="dokumentasi" placeholder="File">
-                                            @error('dokumentasi')
-                                                <span class="invalid-feedback text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div> --}}
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="form-group">
