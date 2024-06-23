@@ -129,8 +129,8 @@
                                                         <i class="fa-solid fa-file-signature"></i>
                                                         Revisi
                                                     </span>
-                                                    <?php elseif ($datalpj->status_lpj == 'perbaikan revisi'): ?>
-                                                    <span class="badge badge-warning">
+                                                    <?php elseif ($datalpj->status_lpj == 'perbaikanrevisi'): ?>
+                                                    <span class="badge badge-info">
                                                         <i class="fa-solid fa-file-pen"></i>
                                                         Telah Direvisi
                                                     </span>
@@ -146,7 +146,7 @@
                                             {{-- <td>{{ $data->note }}</td> --}}
                                             <td>
                                                 <?php if ($datalpj->status_lpj == 'terkirim' ||
-                                                $datalpj->status_lpj == 'perbaikan revisi'): ?>
+                                                $datalpj->status_lpj == 'perbaikanrevisi'): ?>
                                                 <form class="d-inline" action="/lpj/{{ $datalpj->idlpj }}/edit"
                                                     method="GET">
                                                     <button type="submit" class="btn btn-warning btn-sm mr-1">

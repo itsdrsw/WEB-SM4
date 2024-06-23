@@ -33,15 +33,15 @@ class KegiatanController extends Controller
             $kegiatan->where(function ($query) {
                 $query->where('kegiatan.status_kegiatan', 'terkirim')
                     ->orWhere('kegiatan.status_kegiatan', 'revisibem')
-                    ->orWhere('kegiatan.status_kegiatan', 'revisiukmbem');;
+                    ->orWhere('kegiatan.status_kegiatan', 'ajuanukm')
+                    ->orWhere('kegiatan.status_kegiatan', 'revisiukmbem');
             });
         }
 
         $kegiatan = $kegiatan->get();
 
-        return view('kegiatan.kegiatan', compact('kegiatan'));
+        return view('kegiatan.kegiatan', compact('kegiatan', 'role'));
     }
-
 
     public function edit($idkegiatan)
     {

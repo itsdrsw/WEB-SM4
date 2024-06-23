@@ -149,13 +149,20 @@
                                                     <?php elseif ($datakegiatan->status_kegiatan == 'revisiukmbem'): ?>
                                                     <span class="badge badge-info">
                                                         <i class="fa-solid fa-file-signature"></i>
-                                                        Revisi UKM-BEM
+                                                        Telah Direvisi UKM
                                                     </span>
                                                     <?php elseif ($datakegiatan->status_kegiatan == 'ajuanukm'): ?>
-                                                    <span class="badge badge-light">
-                                                        <i class="fa-solid fa-file-signature"></i>
-                                                        Ajuan UKM
-                                                    </span>
+                                                    @if ($role == 'bem')
+                                                        <span class="badge badge-success">
+                                                            <i class="fa-solid fa-file-circle-check"></i>
+                                                            ACC BEM
+                                                        </span>
+                                                    @elseif ($role == 'kemahasiswaan')
+                                                        <span class="badge badge-light">
+                                                            <i class="fa-solid fa-file-signature"></i>
+                                                            Ajuan UKM
+                                                        </span>
+                                                    @endif
                                                     <?php elseif ($datakegiatan->status_kegiatan == 'revisikemahasiswaan'): ?>
                                                     <span class="badge badge-warning">
                                                         <i class="fa-solid fa-file-signature"></i>
@@ -164,7 +171,7 @@
                                                     <?php elseif ($datakegiatan->status_kegiatan == 'revisiukmkemahasiswaan'): ?>
                                                     <span class="badge badge-info">
                                                         <i class="fa-solid fa-paper-plane"></i>
-                                                        Revisi UKM
+                                                        Telah Direvisi
                                                     </span>
                                                     <?php elseif ($datakegiatan->status_kegiatan == 'pencairan'): ?>
                                                     <span class="badge badge-primary">
@@ -179,30 +186,38 @@
                                                     <?php endif; ?>
                                                 </h5>
                                             </td>
-                                            {{-- <td>Rp. {{ number_format($data->price, 0) }}</td> --}}
-                                            {{-- <td>{{ $data->note }}</td> --}}
                                             <td>
-                                                <?php if ($datakegiatan->status_kegiatan == 'terkirim' ||
-                                                $datakegiatan->status_kegiatan == 'revisiukmbem' ||
-                                                $datakegiatan->status_kegiatan == 'revisiukmkemahasiswaan' ||
-                                                $datakegiatan->status_kegiatan == 'ajuanukm'): ?>
-                                                <form class="d-inline"
-                                                    action="/kegiatan/{{ $datakegiatan->idkegiatan }}/edit" method="GET">
-                                                    <button type="submit" class="btn btn-warning btn-sm mr-1">
-                                                        <i class="fa-solid fa-square-pen"></i> Konfirmasi
-                                                    </button>
-                                                </form>
-                                                <?php elseif ($datakegiatan->status_kegiatan == 'revisibem'||
-                                                $datakegiatan->status_kegiatan == 'revisikemahasiswaan' ||
-                                                $datakegiatan->status_kegiatan == 'pencairan'||
-                                                $datakegiatan->status_kegiatan == 'selesai'): ?>
-                                                <form class="d-inline"
-                                                    action="/kegiatan/{{ $datakegiatan->idkegiatan }}/edit" method="GET">
-                                                    <button type="submit" class="btn btn-warning btn-sm mr-1" disabled>
-                                                        <i class="fa-solid fa-square-pen"></i> Konfirmasi
-                                                    </button>
-                                                </form>
-                                                <?php endif; ?>
+                                                @if ($role == 'bem')
+                                                    @if ($datakegiatan->status_kegiatan == 'ajuanukm')
+                                                        <form class="d-inline"
+                                                            action="/kegiatan/{{ $datakegiatan->idkegiatan }}/edit"
+                                                            method="GET">
+                                                            <button type="submit" class="btn btn-warning btn-sm mr-1"
+                                                                disabled>
+                                                                <i class="fa-solid fa-square-pen"></i> Konfirmasi
+                                                            </button>
+                                                        </form>
+                                                    @endif
+                                                @elseif ($role == 'kemahasiswaan')
+                                                    @if (in_array($datakegiatan->status_kegiatan, ['terkirim', 'revisiukmbem', 'revisiukmkemahasiswaan', 'ajuanukm']))
+                                                        <form class="d-inline"
+                                                            action="/kegiatan/{{ $datakegiatan->idkegiatan }}/edit"
+                                                            method="GET">
+                                                            <button type="submit" class="btn btn-warning btn-sm mr-1">
+                                                                <i class="fa-solid fa-square-pen"></i> Konfirmasi
+                                                            </button>
+                                                        </form>
+                                                    @elseif (in_array($datakegiatan->status_kegiatan, ['revisibem', 'revisikemahasiswaan', 'pencairan', 'selesai']))
+                                                        <form class="d-inline"
+                                                            action="/kegiatan/{{ $datakegiatan->idkegiatan }}/edit"
+                                                            method="GET">
+                                                            <button type="submit" class="btn btn-warning btn-sm mr-1"
+                                                                disabled>
+                                                                <i class="fa-solid fa-square-pen"></i> Konfirmasi
+                                                            </button>
+                                                        </form>
+                                                    @endif
+                                                @endif
                                                 <form id="delete-form-{{ $datakegiatan->idkegiatan }}" class="d-inline"
                                                     action="/kegiatan/{{ $datakegiatan->idkegiatan }}" method="POST">
                                                     @csrf

@@ -98,7 +98,7 @@ class MobileLPJController extends Controller
 
             // Menentukan status_proker baru berdasarkan kondisi
             if ($lpj->status_lpj == 'revisi') {
-                $lpj->status_lpj = 'perbaikan revisi';
+                $lpj->status_lpj = 'perbaikanrevisi';
             } else if ($lpj->status_lpj == 'terkirim') {
                 $lpj->status_lpj = 'terkirim';
             }

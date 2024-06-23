@@ -149,16 +149,16 @@
                                                 $dataproker->status_proker == 'perbaikanrevisi'): ?>
                                                 <form class="d-inline" action="/proker/{{ $dataproker->idproker }}/edit"
                                                     method="GET">
-                                                    <button type="submit" class="btn btn-success btn-sm mr-1">
-                                                        <i class="fa-solid fa-square-pen"></i> Edit
+                                                    <button type="submit" class="btn btn-warning btn-sm mr-1">
+                                                        <i class="fa-solid fa-square-pen"></i> Konfirmasi
                                                     </button>
                                                 </form>
                                                 <?php elseif ($dataproker->status_proker == 'disetujui' ||
                                                 $dataproker->status_proker == 'revisi'): ?>
                                                 <form class="d-inline" action="/proker/{{ $dataproker->idproker }}/edit"
                                                     method="GET">
-                                                    <button type="submit" class="btn btn-success btn-sm mr-1" disabled>
-                                                        <i class="fa-solid fa-square-pen"></i> Edit
+                                                    <button type="submit" class="btn btn-warning btn-sm mr-1" disabled>
+                                                        <i class="fa-solid fa-square-pen"></i> Konfirmasi
                                                     </button>
                                                 </form>
                                                 <?php endif; ?>

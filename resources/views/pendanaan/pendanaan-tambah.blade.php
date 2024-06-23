@@ -75,7 +75,7 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label for="anggaran_tersedia">Anggaran Tersedia</label>
+                                            <label for="anggaran_tersedia">Anggaran UKM</label>
                                             <input type="number" name="anggaran_tersedia"
                                                 class="form-control @error('anggaran_tersedia') is-invalid @enderror"
                                                 id="anggaran_tersedia" placeholder="Masukkan nominal anggaran"
