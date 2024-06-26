@@ -3,3 +3,21 @@
   background-color: #5F7C5D;
   color: #fff;
 }
+.btn-custom{
+    color: #fff;
+  background-color: #5F7C5D;
+  border-color: #5F7C5D;
+  box-shadow: none;
+}
+.btn-custom:hover {
+    color: #5F7C5D;
+    background-color: #eeeeee;
+    border-color: #eeeeee;
+    box-shadow: none;
+}
+.btn-custom:active{
+    color: #fff;
+  background-color: #5F7C5D;
+  border-color: #5F7C5D;
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}

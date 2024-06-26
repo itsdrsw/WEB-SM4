@@ -1,5 +1,5 @@
 @extends('template.main')
-@section('title', 'Profil')
+@section('title', 'Data Akun')
 @section('content')
 
     <!-- Content Header (Page header) -->
@@ -11,7 +11,7 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
                         <li class="breadcrumb-item active">@yield('title')</li>
                     </ol>
                 </div><!-- /.col -->

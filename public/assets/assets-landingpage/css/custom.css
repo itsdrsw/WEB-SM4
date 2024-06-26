@@ -1,0 +1,47 @@
+:root {
+    --global--color-secondary: #5F7C5D;
+    --global--color-white: #ebebeb;
+    --global--color-dark: #303030;
+    --global--color-silver: #bbbbbb;
+    --transition: 0.3s ease-in-out;
+}
+
+.go-top {
+    position: fixed;
+    cursor: pointer;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--global--color-secondary);
+    color: var(--global--color-white);
+    z-index: 4;
+    width: 45px;
+    text-align: center;
+    height: 45px;
+    opacity: 0;
+    visibility: hidden;
+    border-radius: 45px;
+    font-size: 27px;
+    transition: var(--transition);
+}
+
+.go-top i {
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.go-top.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.go-top:hover {
+    background-color: var(--global--color-dark);
+    color: var(--global--color-white);
+    box-shadow: 0px 1px 7px var(--global--color-silver);
+}

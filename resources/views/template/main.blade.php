@@ -7,6 +7,7 @@
     <title>@yield('title') | SIKMAS POLIJE</title>
 
     <!-- Google Font: Source Sans Pro -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Ionicons -->
@@ -223,7 +224,7 @@
                             with font-awesome or any other icon font library -->
                         @if (auth()->user()->role == 'kemahasiswaan')
                             <li class="nav-item">
-                                <a href="/" class="nav-link">
+                                <a href="/dashboard" class="nav-link">
                                     <i class="nav-icon fa-solid fa-gauge-high"></i>
                                     <p>
                                         Dashboard
@@ -286,7 +287,7 @@
                             </li>
                         @elseif (auth()->user()->role == 'bem')
                             <li class="nav-item">
-                                <a href="/" class="nav-link">
+                                <a href="/dashboard" class="nav-link">
                                     <i class="nav-icon fa-solid fa-gauge-high"></i>
                                     <p>
                                         Dashboard

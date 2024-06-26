@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -54,16 +55,24 @@ class MobileLoginController extends Controller
         $user = Auth::user();
 
         if ($user) {
+            $now = Carbon::now('Asia/Jakarta');
+
+            // Perbarui kolom last_login
+            $user->last_login = $now;
+            $user->save();
+
             return response()->json([
                 'user_id' => $user->id,
                 'name' => $user->name,
                 'email' => $user->email,
                 'ketua' => $user->ketua,
+                'last_login' => $user->last_login, // Sertakan last_login jika ingin ditampilkan juga
             ]);
         } else {
             return response()->json(['error' => 'User not found'], 404);
         }
     }
+
 
     public function changePassword(Request $request)
     {

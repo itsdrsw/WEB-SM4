@@ -12,7 +12,7 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
                         <li class="breadcrumb-item active">@yield('title')</li>
                     </ol>
                 </div><!-- /.col -->
@@ -29,8 +29,8 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <div class="text-right">
-                                <a href="/barang/create" class="btn btn-primary"><i class="fa-solid fa-circle-plus"></i>
+                            <div class="text-left">
+                                <a href="#" class="btn btn-primary btn-custom"><i class="fa-solid fa-trophy"></i>
                                 </a>
                             </div>
                         </div>

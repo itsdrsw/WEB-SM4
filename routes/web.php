@@ -37,7 +37,7 @@ Route::post('/register', [LoginController::class, 'process']);
 Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth')->name('logout');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'duel']);
-Route::get('/', [DashboardController::class, 'index'])->middleware(['auth', 'duel']);
+Route::get('/', [DashboardController::class, 'viewLandingPage']);
 
 //route profil
 Route::resource('/profil', ProfilController::class)->middleware(['auth', 'solo']);

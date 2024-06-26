@@ -12,6 +12,10 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 class DashboardController extends Controller
 {
+    public function viewLandingPage()
+    {
+        return view('LandingPage');
+    }
     public function index(Request $request)
     {
         $title = 'Dashboard';
@@ -19,7 +23,7 @@ class DashboardController extends Controller
         $jmlprestasi    = Prestasi::count();
         $jmlproker      = ProgamKerja::count();
 
-        return view('dashboard.dashboard', compact('title', 'jmlkegiatan','jmlprestasi','jmlproker'));
+        return view('dashboard.dashboard', compact('title', 'jmlkegiatan', 'jmlprestasi', 'jmlproker'));
     }
 
     public function BlokirAksesView()
